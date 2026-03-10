@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personaliza | Productos Personalizados</title>
-    
+
     <!-- Material UI CDN -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    
+
     <style>
         * {
             margin: 0;
@@ -118,7 +119,7 @@
         }
 
         .nav-link:hover {
-            color: #007FFF;
+            color: #b70000;
         }
 
         /* Botones */
@@ -135,6 +136,7 @@
             border: none;
             transition: all 0.2s;
             gap: 8px;
+            background: whitesmoke;
         }
 
         .btn-primary {
@@ -150,9 +152,9 @@
         }
 
         .btn-outline {
-            background: transparent;
-            border: 1px solid #007FFF;
-            color: #007FFF;
+            background: #007FFF;
+            border: 1px solid #ffffff;
+            color: #ffffff;
         }
 
         .btn-outline:hover {
@@ -370,7 +372,7 @@
             padding: 20px;
             background: white;
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.2s;
             height: 100%;
             text-decoration: none;
@@ -378,7 +380,7 @@
         }
 
         .service-mini-card:hover {
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             transform: translateY(-4px);
         }
 
@@ -424,7 +426,7 @@
             background: white;
             border-radius: 24px;
             padding: 32px;
-            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -445,7 +447,7 @@
 
 
 
-        
+
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
@@ -515,21 +517,21 @@
             .grid-4 {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
+
             .hero p {
                 margin-left: auto;
                 margin-right: auto;
             }
-            
+
             .hero-buttons {
                 justify-content: center;
             }
-            
+
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -539,36 +541,38 @@
             .nav-menu {
                 display: none;
             }
-            
+
             .grid-4,
             .grid-3,
             .grid-2 {
                 grid-template-columns: 1fr;
             }
-            
+
             h1 {
                 font-size: 2.2rem;
             }
-            
+
             .footer-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="app-root">
         <!-- Navbar -->
         <header class="navbar">
             <div class="navbar-container">
-                <a href="#" class="logo">✨ Personaliza</a>
-                
+                <a href="#" class="logo">✨ Dots Color</a>
+
                 <ul class="nav-menu">
                     <li><a href="#" class="nav-link">Inicio</a></li>
                     <li><a href="#productos" class="nav-link">Productos</a></li>
                     <li><a href="#personalizar" class="nav-link">Cómo personalizar</a></li>
                     <li><a href="#servicios" class="nav-link">Servicios</a></li>
                     <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                      <li><a href="#factura" class="nav-link">Solicita tu factura</a></li>
                 </ul>
 
                 <a href="#contacto" class="btn btn-primary">Cotizar ahora</a>
@@ -581,30 +585,32 @@
                 <div class="hero-container">
                     <div>
                         <h1>Dale tu estilo a <span>cada producto</span></h1>
-                        <p>Playeras, termos, tazas, rompecabezas y más. Personalizamos cualquier producto con tu diseño. Calidad premium y entrega rápida.</p>
+                        <p>Playeras, termos, tazas, rompecabezas y más. Personalizamos cualquier producto con tu diseño.
+                            Calidad premium y entrega rápida.</p>
                         <div class="hero-buttons">
                             <a href="#productos" class="btn btn-primary btn-large">Ver productos</a>
                             <a href="#personalizar" class="btn btn-outline-light btn-large">Cómo funciona</a>
                         </div>
-                        
+
                         <!-- Trust badges -->
                         <div style="display: flex; gap: 24px; margin-top: 40px;">
                             <div style="display: flex; align-items: center; gap: 8px;">
-                                <span class="material-icons" style="color: #00A76F;">verified</span>
+                                <span class="material-icons" style="color: #ffea01;">verified</span>
                                 <span style="font-size: 0.9rem;">Sin mínimo</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 8px;">
-                                <span class="material-icons" style="color: #00A76F;">local_shipping</span>
+                                <span class="material-icons" style="color: #00bbff;">local_shipping</span>
                                 <span style="font-size: 0.9rem;">Envío gratis</span>
                             </div>
                             <div style="display: flex; align-items: center; gap: 8px;">
-                                <span class="material-icons" style="color: #00A76F;">palette</span>
+                                <span class="material-icons" style="color: #ff06c9;">palette</span>
                                 <span style="font-size: 0.9rem;">Diseño incluido</span>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Productos personalizados" class="hero-image">
+                        <img src="https://scontent.fslw1-1.fna.fbcdn.net/v/t39.30808-6/571038510_4214478678780700_4986668978705025461_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHDnUNnbiSuTSX4kK1Xl6QYvDcbxh2XRUK8NxvGHZdFQpQJ1RO0suM8wwETIgUiEmniDUADiHaSkNYStwrw0B-U&_nc_ohc=0J6H9sB2xlQQ7kNvwGy_rk4&_nc_oc=AdkBDoAiLm840fIw_gRBE5retgG1VEr6icNOrbGbtw1KDUsLS6euurR8a6QWQNQpFfUSx5kXbSjmxGS3vB8H-rwQ&_nc_zt=23&_nc_ht=scontent.fslw1-1.fna&_nc_gid=p75h5YjdbYaYmVYUMF-83A&_nc_ss=8&oh=00_AfztQkatJazB5F-r8x1Ze2ACWc-cCkTCsm8B3QLUffB8Bw&oe=69B6596E"
+                            alt="Productos personalizados" class="hero-image">
                     </div>
                 </div>
             </section>
@@ -622,151 +628,162 @@
                 </div>
             </div>
 
-        <section id="productos" class="section">
-<div class="container">
+            <section id="productos" class="section">
+                <div class="container">
 
-<div class="section-header">
-<h2>Productos más populares</h2>
-<p class="text-secondary">Los favoritos de nuestros clientes para personalizar</p>
-</div>
-
-<div class="grid grid-4">
-
-<!-- Producto 1 - Taza Blanca -->
-<div class="mui-card">
-<div style="position: relative; overflow: hidden;">
-<span class="badge"><span class="chip chip-hot">MÁS VENDIDO</span></span>
-<img src="https://m.media-amazon.com/images/I/61WB+6ppLgL._AC_SX679_.jpg" alt="Taza blanca personalizada" class="card-media">
-</div>
-
-<div class="card-content">
-<h3>Taza Blanca Personalizada</h3>
-<p class="text-secondary">Taza de cerámica blanca ideal para sublimación con tu diseño, foto o logo.</p>
-
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Capacidad 11 oz</span>
-</div>
-
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Impresión full color</span>
-</div>
-
-<div class="price">$100 <small>MXN</small></div>
-</div>
-
-<div class="card-actions">
-<button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-<button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-</div>
-</div>
-
-<!-- Producto 2 - Taza Interior Color -->
-<div class="mui-card">
-<div style="position: relative; overflow: hidden;">
-<span class="badge"><span class="chip chip-new">POPULAR</span></span>
-<img src="https://fotoideas.mx/cdn/shop/files/FOTOTAZAS.png?v=1745524473" alt="Taza interior color personalizada" class="card-media">
-</div>
-
-<div class="card-content">
-<h3>Taza Interior de Color</h3>
-<p class="text-secondary">Taza blanca con interior y asa de color. Perfecta para regalos personalizados.</p>
-
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Interior rojo, azul o negro</span>
-</div>
-
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Sublimación de alta calidad</span>
-</div>
-
-<div class="price">$100 <small>MXN</small></div>
-</div>
-
-<div class="card-actions">
-<button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-<button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-</div>
-</div>
-
-<!-- Producto 3 - Taza Mágica -->
-<div class="mui-card">
-<div style="position: relative; overflow: hidden;">
-<span class="badge"><span class="chip chip-hot">SORPRESA</span></span>
-<img src="https://m.media-amazon.com/images/I/61vRjFmN5sL._AC_SL1500_.jpg" alt="Taza mágica personalizada" class="card-media">
-</div>
-
-<div class="card-content">
-<h3>Taza Mágica</h3>
-<p class="text-secondary">Taza que cambia de color al agregar líquido caliente revelando tu diseño.</p>
-
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Efecto térmico</span>
-</div>
-
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Diseño oculto sorpresa</span>
-</div>
-
-<div class="price">$120 <small>MXN</small></div>
-</div>
-
-<div class="card-actions">
-<button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-<button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-</div>
-</div>
+                    <div class="section-header">
+                        <h2>Productos más populares</h2>
+                        <p class="text-secondary">Los favoritos de nuestros clientes para personalizar</p>
+                    </div>
 
 
-<!-- Producto 4 - Playera Infantil -->
-<div class="mui-card">
-<div style="position: relative; overflow: hidden;">
-<span class="badge"><span class="chip chip-new">PERSONALIZADO</span></span>
-<img src="https://www.tenvinilo.mx/webp/t-shirts/large/camiseta-ninos-futbol-personalizado-45384.webp" alt="Playera infantil personalizada" class="card-media">
-</div>
 
-<div class="card-content">
-<h3>Playera Infantil Personalizada</h3>
-<p class="text-secondary">Playera infantil personalizada con impresión DTF de alta calidad.</p>
 
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Colores negro y varios colores</span>
-</div>
+                    <div class="grid grid-4">
 
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Impresión DTF duradera</span>
-</div>
+                        <!-- Producto 1 - Taza Blanca -->
+                        <div class="mui-card">
+                            <div style="position: relative; overflow: hidden;">
+                                <span class="badge"><span class="chip chip-hot">MÁS VENDIDO</span></span>
+                                <img src="https://m.media-amazon.com/images/I/61WB+6ppLgL._AC_SX679_.jpg"
+                                    alt="Taza blanca personalizada" class="card-media">
+                            </div>
 
-<div class="feature-item">
-<span class="material-icons feature-icon">check_circle</span>
-<span>Tallas infantiles disponibles</span>
-</div>
+                            <div class="card-content">
+                                <h3>Taza Blanca Personalizada</h3>
+                                <p class="text-secondary">Taza de cerámica blanca ideal para sublimación con tu diseño,
+                                    foto o logo.</p>
 
-<div class="price">$200 <small>MXN</small></div>
-</div>
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Capacidad 11 oz</span>
+                                </div>
 
-<div class="card-actions">
-<button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-<button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-</div>
-</div>
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Impresión full color</span>
+                                </div>
 
-</div>
+                                <div class="price">$100 <small>MXN</small></div>
+                            </div>
 
-<!-- Ver más productos -->
-<div style="text-align: center; margin-top: 40px;">
-<a href="#" class="btn btn-outline btn-large">Ver todos los productos</a>
-</div>
+                            <div class="card-actions">
+                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
+                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
+                            </div>
+                        </div>
 
-</div>
-</section>
+                        <!-- Producto 2 - Taza Interior Color -->
+                        <div class="mui-card">
+                            <div style="position: relative; overflow: hidden;">
+                                <span class="badge"><span class="chip chip-new">POPULAR</span></span>
+                                <img src="https://fotoideas.mx/cdn/shop/files/FOTOTAZAS.png?v=1745524473"
+                                    alt="Taza interior color personalizada" class="card-media">
+                            </div>
+
+                            <div class="card-content">
+                                <h3>Taza Interior de Color</h3>
+                                <p class="text-secondary">Taza blanca con interior y asa de color. Perfecta para regalos
+                                    personalizados.</p>
+
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Interior rojo, azul o negro</span>
+                                </div>
+
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Sublimación de alta calidad</span>
+                                </div>
+
+                                <div class="price">$100 <small>MXN</small></div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
+                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
+                            </div>
+                        </div>
+
+                        <!-- Producto 3 - Taza Mágica -->
+                        <div class="mui-card">
+                            <div style="position: relative; overflow: hidden;">
+                                <span class="badge"><span class="chip chip-hot">SORPRESA</span></span>
+                                <img src="https://m.media-amazon.com/images/I/61vRjFmN5sL._AC_SL1500_.jpg"
+                                    alt="Taza mágica personalizada" class="card-media">
+                            </div>
+
+                            <div class="card-content">
+                                <h3>Taza Mágica</h3>
+                                <p class="text-secondary">Taza que cambia de color al agregar líquido caliente revelando
+                                    tu diseño.</p>
+
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Efecto térmico</span>
+                                </div>
+
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Diseño oculto sorpresa</span>
+                                </div>
+
+                                <div class="price">$120 <small>MXN</small></div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
+                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
+                            </div>
+                        </div>
+
+
+                        <!-- Producto 4 - Playera Infantil -->
+                        <div class="mui-card">
+                            <div style="position: relative; overflow: hidden;">
+                                <span class="badge"><span class="chip chip-new">PERSONALIZADO</span></span>
+                                <img src="https://www.tenvinilo.mx/webp/t-shirts/large/camiseta-ninos-futbol-personalizado-45384.webp"
+                                    alt="Playera infantil personalizada" class="card-media">
+                            </div>
+
+                            <div class="card-content">
+                                <h3>Playera Infantil Personalizada</h3>
+                                <p class="text-secondary">Playera infantil personalizada con impresión DTF de alta
+                                    calidad.</p>
+
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Colores negro y varios colores</span>
+                                </div>
+
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Impresión DTF duradera</span>
+                                </div>
+
+                                <div class="feature-item">
+                                    <span class="material-icons feature-icon">check_circle</span>
+                                    <span>Tallas infantiles disponibles</span>
+                                </div>
+
+                                <div class="price">$200 <small>MXN</small></div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
+                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Ver más productos -->
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="todos-productos.html" class="btn btn-outline btn-large">Ver todos los productos</a>
+                    </div>
+
+                </div>
+            </section>
 
             <!-- Cómo personalizar (proceso simple) -->
             <section id="personalizar" class="section" style="background: #f0f4f8;">
@@ -778,19 +795,26 @@
 
                     <div class="grid grid-3" style="gap: 30px;">
                         <div class="mui-card" style="text-align: center; padding: 40px 20px;">
-                            <div style="width: 80px; height: 80px; border-radius: 40px; background: #007FFF; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">1</div>
+                            <div
+                                style="width: 80px; height: 80px; border-radius: 40px; background: #222535; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">
+                                1</div>
                             <h3 style="margin-bottom: 12px;">Elige tu producto</h3>
                             <p class="text-secondary">Selecciona entre nuestra variedad de productos de alta calidad</p>
                         </div>
 
                         <div class="mui-card" style="text-align: center; padding: 40px 20px;">
-                            <div style="width: 80px; height: 80px; border-radius: 40px; background: #007FFF; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">2</div>
+                            <div
+                                style="width: 80px; height: 80px; border-radius: 40px; background: #222535; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">
+                                2</div>
                             <h3 style="margin-bottom: 12px;">Envía tu diseño</h3>
-                            <p class="text-secondary">Comparte tu logo, imagen o idea. Si no tienes, nosotros lo diseñamos</p>
+                            <p class="text-secondary">Comparte tu logo, imagen o idea. Si no tienes, nosotros lo
+                                diseñamos</p>
                         </div>
 
                         <div class="mui-card" style="text-align: center; padding: 40px 20px;">
-                            <div style="width: 80px; height: 80px; border-radius: 40px; background: #007FFF; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">3</div>
+                            <div
+                                style="width: 80px; height: 80px; border-radius: 40px; background: #222535; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">
+                                3</div>
                             <h3 style="margin-bottom: 12px;">Recibe tu pedido</h3>
                             <p class="text-secondary">Producimos y enviamos a toda la república en 5-7 días</p>
                         </div>
@@ -820,7 +844,7 @@
                         </a>
 
                         <!-- Desarrollo Web -->
-                        <a href="#" class="service-mini-card">
+                     <a href="desarrollo-web.html" class="service-mini-card">
                             <div class="service-icon-small">
                                 <span class="material-icons">code</span>
                             </div>
@@ -834,42 +858,139 @@
                 </div>
             </section>
 
+
+            <style>
+                .contacto-section {
+
+
+                    background: linear-gradient(135deg, #1C1E2A 0%, #2D3349 100%);
+                    padding: 80px 20px;
+                    color: white;
+                }
+
+                .contacto-container {
+                    max-width: 900px;
+                    margin: auto;
+                    text-align: center;
+                }
+
+                .contacto-header h2 {
+                    font-size: 2.2rem;
+                    margin-bottom: 10px;
+                }
+
+                .contacto-header p {
+                    opacity: .9;
+                    margin-bottom: 40px;
+                    font-size: 1.1rem;
+                }
+
+                .contacto-card {
+                    background: rgba(255, 255, 255, 0.15);
+                    backdrop-filter: blur(10px);
+                    padding: 35px;
+                    border-radius: 16px;
+                    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+                }
+
+                .contacto-card form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 18px;
+                }
+
+                .grid-2 {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 15px;
+                }
+
+                .contacto-card input,
+                .contacto-card select,
+                .contacto-card textarea {
+                    width: 100%;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    outline: none;
+                }
+
+                .contacto-card textarea {
+                    min-height: 120px;
+                    resize: none;
+                }
+
+                .contacto-card input:focus,
+                .contacto-card select:focus,
+                .contacto-card textarea:focus {
+                    box-shadow: 0 0 0 2px #007FFF;
+                }
+
+                .btn-enviar {
+                    background: #007FFF;
+                    color: white;
+                    border: none;
+                    padding: 14px;
+                    border-radius: 10px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: .3s;
+                }
+
+                .btn-enviar:hover {
+                    background: linear-gradient(135deg, #1C1E2A 0%, #2D3349 100%);
+
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                }
+
+                /* responsive */
+
+                @media(max-width:700px) {
+                    .grid-2 {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            </style>
             <!-- Contacto rápido -->
-            <section id="contacto" class="section" style="background: linear-gradient(135deg, #007FFF, #0066CC); color: white;">
-                <div class="container">
-                    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
-                        <h2 style="color: white; margin-bottom: 16px;">¿Listo para personalizar?</h2>
-                        <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 32px;">Cuéntanos tu idea y te enviaremos una cotización en máximo 2 horas</p>
-                        
-                        <div class="form-compact" style="background: white;">
-                            <form>
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                                    <div class="form-group">
-                                        <input type="text" class="form-input" placeholder="Nombre" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-input" placeholder="Email" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-select">
-                                        <option>Producto de interés</option>
-                                        <option>Playera</option>
-                                        <option>Termo</option>
-                                        <option>Taza</option>
-                                        <option>Rompecabezas</option>
-                                        <option>Otro producto</option>
-                                        <option>Soporte Técnico</option>
-                                        <option>Desarrollo Web</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-textarea" placeholder="Cuéntanos tu idea o qué necesitas..."></textarea>
-                                </div>
-                                <button class="btn btn-primary" style="width: 100%;">Enviar mensaje</button>
-                            </form>
-                        </div>
+            <section id="contacto" class="section contacto-section">
+                <div class="container contacto-container">
+
+                    <div class="contacto-header">
+                        <h2>¿Listo para personalizar?</h2>
+                        <p>Cuéntanos tu idea y te enviaremos una cotización en máximo <b>2 horas</b></p>
                     </div>
+
+                    <div class="contacto-card">
+                        <form>
+
+                            <div class="grid-2">
+                                <input type="text" placeholder="Nombre" required>
+                                <input type="email" placeholder="Correo electrónico" required>
+                            </div>
+
+                            <select>
+                                <option>Producto de interés</option>
+                                <option>Playera personalizada</option>
+                                <option>Termo personalizado</option>
+                                <option>Taza personalizada</option>
+                                <option>Rompecabezas personalizado</option>
+                                <option>Otro producto</option>
+                                <option>Soporte Técnico</option>
+                                <option>Desarrollo Web</option>
+                            </select>
+
+                            <textarea placeholder="Cuéntanos tu idea o qué necesitas..."></textarea>
+
+                            <button type="submit" class="btn-enviar">
+                                Enviar mensaje
+                            </button>
+
+                        </form>
+                    </div>
+
                 </div>
             </section>
         </main>
@@ -879,8 +1000,9 @@
             <div class="container">
                 <div class="footer-grid">
                     <div>
-                        <h3 style="color: rgb(235, 227, 227); margin-bottom: 16px;">✨ Personaliza</h3>
-                        <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">Damos vida a tus ideas en productos de alta calidad. Personalización profesional sin límites.</p>
+                        <h3 style="color: rgb(235, 227, 227); margin-bottom: 16px;">✨Dots Color</h3>
+                        <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">Damos vida a tus ideas en
+                            productos de alta calidad. Personalización profesional sin límites.</p>
                     </div>
 
                     <div>
@@ -907,15 +1029,15 @@
                     <div>
                         <h4 style="color: white; margin-bottom: 20px;">Contacto</h4>
                         <ul class="footer-links">
-                            <li>📞 +52 555 123 4567</li>
-                            <li>✉️ hola@personaliza.mx</li>
-                            <li>📍 CDMX / Monterrey / GDL</li>
+                            <li>📞 844 692 93 85 </li>
+                            <li>✉️ ventas@dotscolor.com </li>
+                            <li>📍 Saltillo, Coahuila, Mexico</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="copyright">
-                    <p>&copy; 2026 Personaliza. Todos los derechos reservados.</p>
+                    <p>&copy; 2026 Dotscolor. Todos los derechos reservados.</p>
                 </div>
             </div>
         </footer>
@@ -936,78 +1058,81 @@
 
         // Category chips
         document.querySelectorAll('.category-chip').forEach(chip => {
-            chip.addEventListener('click', function() {
+            chip.addEventListener('click', function () {
                 document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
             });
         });
     </script>
 
-<style>.whatsapp-float{
-position: fixed;
-bottom: 25px;
-right: 25px;
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
 
-display: flex;
-align-items: center;
-gap:10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-background:#25D366;
-color:white;
+            background: #25D366;
+            color: white;
 
-padding:14px 18px;
-border-radius:50px;
+            padding: 14px 18px;
+            border-radius: 50px;
 
-font-weight:600;
-text-decoration:none;
+            font-weight: 600;
+            text-decoration: none;
 
-box-shadow:0 8px 25px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 
-z-index:9999;
+            z-index: 9999;
 
-transition:all .3s ease;
-animation:whatsappPulse 2s infinite;
-}
+            transition: all .3s ease;
+            animation: whatsappPulse 2s infinite;
+        }
 
-.whatsapp-float:hover{
-transform:scale(1.08);
-background:#20b954;
-}
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background: #20b954;
+        }
 
-.whatsapp-text{
-font-size:15px;
-}
+        .whatsapp-text {
+            font-size: 15px;
+        }
 
-/* animación de atención */
+        /* animación de atención */
 
-@keyframes whatsappPulse{
+        @keyframes whatsappPulse {
 
-0%{
-box-shadow:0 0 0 0 rgba(37,211,102,0.7);
-}
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
 
-70%{
-box-shadow:0 0 0 15px rgba(37,211,102,0);
-}
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
 
-100%{
-box-shadow:0 0 0 0 rgba(37,211,102,0);
-}
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
 
-}</style>
+        }
+    </style>
 
 
 
-<a href="https://wa.me/5218440000000?text=Hola,%20quiero%20información%20sobre%20sus%20productos%20personalizados" 
-class="whatsapp-float" 
-target="_blank">
+    <a href="https://wa.me/5218446929385?text=Hola,%20quiero%20información%20sobre%20sus%20productos%20personalizados"
+        class="whatsapp-float" target="_blank">
 
-<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
-<path d="M20.52 3.48A11.91 11.91 0 0012.05 0C5.48 0 .16 5.32.16 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.29-1.64a11.88 11.88 0 005.76 1.47h.01c6.57 0 11.9-5.32 11.9-11.9a11.86 11.86 0 00-3.44-8.45zM12.05 21.4c-1.78 0-3.53-.48-5.06-1.39l-.36-.21-3.73.97 1-3.64-.23-.37a9.42 9.42 0 01-1.45-5.06c0-5.23 4.25-9.48 9.49-9.48 2.53 0 4.9.98 6.69 2.77a9.41 9.41 0 012.78 6.71c0 5.23-4.25 9.49-9.48 9.49zm5.2-7.08c-.28-.14-1.67-.82-1.93-.91-.26-.1-.45-.14-.64.14-.19.28-.73.91-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.1-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.11-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.49.07-.75.35-.26.28-.99.97-.99 2.36s1.01 2.73 1.15 2.92c.14.19 1.98 3.02 4.8 4.24.67.29 1.19.46 1.6.59.67.21 1.28.18 1.76.11.54-.08 1.67-.68 1.9-1.34.23-.66.23-1.22.16-1.34-.07-.12-.26-.19-.54-.33z"/>
-</svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
+            <path
+                d="M20.52 3.48A11.91 11.91 0 0012.05 0C5.48 0 .16 5.32.16 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.29-1.64a11.88 11.88 0 005.76 1.47h.01c6.57 0 11.9-5.32 11.9-11.9a11.86 11.86 0 00-3.44-8.45zM12.05 21.4c-1.78 0-3.53-.48-5.06-1.39l-.36-.21-3.73.97 1-3.64-.23-.37a9.42 9.42 0 01-1.45-5.06c0-5.23 4.25-9.48 9.49-9.48 2.53 0 4.9.98 6.69 2.77a9.41 9.41 0 012.78 6.71c0 5.23-4.25 9.49-9.48 9.49zm5.2-7.08c-.28-.14-1.67-.82-1.93-.91-.26-.1-.45-.14-.64.14-.19.28-.73.91-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.1-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.11-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.49.07-.75.35-.26.28-.99.97-.99 2.36s1.01 2.73 1.15 2.92c.14.19 1.98 3.02 4.8 4.24.67.29 1.19.46 1.6.59.67.21 1.28.18 1.76.11.54-.08 1.67-.68 1.9-1.34.23-.66.23-1.22.16-1.34-.07-.12-.26-.19-.54-.33z" />
+        </svg>
 
-<span class="whatsapp-text">Cotizar</span>
+        <span class="whatsapp-text">Cotizar</span>
 
-</a>
+    </a>
 </body>
+
 </html>
