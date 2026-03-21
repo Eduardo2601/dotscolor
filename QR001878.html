@@ -209,6 +209,45 @@
         </div>
     </div>
 
+<button class="music-btn" onclick="toggleMusic()" id="btn">
+  🎵 Música
+</button>
+
+<div id="yt"></div>
+
+<script>
+let playing = false;
+
+function toggleMusic(){
+  const btn = document.getElementById("btn");
+  const yt = document.getElementById("yt");
+
+  if(!playing){
+    yt.innerHTML = `
+      <iframe width="0" height="0"
+      src="https://www.youtube.com/embed/5QNXO5MGBEA?autoplay=1&loop=1&playlist=5QNXO5MGBEA"
+      frameborder="0" allow="autoplay"></iframe>
+    `;
+    btn.classList.add("playing");
+    btn.innerHTML = "🔊 Sonando";
+  }else{
+    yt.innerHTML = "";
+    btn.classList.remove("playing");
+    btn.innerHTML = "🎵 Música";
+  }
+
+  playing = !playing;
+}
+
+/* ACTIVAR MÚSICA AUTOMÁTICAMENTE AL INTERACTUAR */
+document.body.addEventListener("click", function(){
+  if(!playing){
+    toggleMusic();
+  }
+}, { once:true });
+
+</script>
+
     <script type="importmap">
         {
             "imports": {
