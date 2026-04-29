@@ -1,1 +1,581 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Dots Color</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0,1" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-area {
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-area">
+            <h2>✨ Dots Color</h2>
+            <p style="font-size: 0.8rem; opacity: 0.8;">Panel Admin</p>
+        </div>
+        
+        <div class="nav-item active" onclick="showSection('productos')">
+            <span class="material-symbols-rounded">inventory</span>
+            <span>Productos</span>
+        </div>
+        
+        <div class="nav-item" onclick="showSection('contactos')">
+            <span class="material-symbols-rounded">chat</span>
+            <span>Mensajes</span>
+        </div>
+        
+        <div class="nav-item" onclick="showSection('estadisticas')">
+            <span class="material-symbols-rounded">bar_chart</span>
+            <span>Estadísticas</span>
+        </div>
+        
+        <div class="nav-item" onclick="logout()">
+            <span class="material-symbols-rounded">logout</span>
+            <span>Cerrar sesión</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h2 id="sectionTitle">Gestión de Productos</h2>
+            <div>
+                <span id="userEmail" style="margin-right: 15px;"></span>
+                <button class="btn btn-primary" onclick="abrirModalProducto()">+ Nuevo Producto</button>
+            </div>
+        </div>
+
+        <!-- Sección Productos -->
+        <div id="productosSection">
+            <div class="card">
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <input type="text" id="searchProducto" placeholder="Buscar producto..." style="max-width: 300px;" onkeyup="filtrarProductos()">
+                    <select id="filtroCategoria" onchange="filtrarProductos()">
+                        <option value="">Todas las categorías</option>
+                        <option value="tazas">Tazas</option>
+                        <option value="playeras">Playeras</option>
+                        <option value="termos">Termos</option>
+                        <option value="rompecabezas">Rompecabezas</option>
+                    </select>
+                </div>
+                <div id="productosList"></div>
+            </div>
+        </div>
+
+        <!-- Sección Contactos -->
+        <div id="contactosSection" style="display: none;">
+            <div class="card">
+                <div id="contactosList"></div>
+            </div>
+        </div>
+
+        <!-- Sección Estadísticas -->
+        <div id="estadisticasSection" style="display: none;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="card">
+                    <h3>📦 Total Productos</h3>
+                    <p id="totalProductos" style="font-size: 2rem; font-weight: 700;">0</p>
+                </div>
+                <div class="card">
+                    <h3>💬 Mensajes Recibidos</h3>
+                    <p id="totalMensajes" style="font-size: 2rem; font-weight: 700;">0</p>
+                </div>
+                <div class="card">
+                    <h3>⭐ Productos Activos</h3>
+                    <p id="productosActivos" style="font-size: 2rem; font-weight: 700;">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar/editar producto -->
+    <div id="productoModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Agregar Producto</h3>
+            <form id="productoForm">
+                <input type="hidden" id="productoId">
+                
+                <div class="form-group">
+                    <label>Nombre del producto *</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Categoría *</label>
+                    <select id="categoria" required>
+                        <option value="tazas">Tazas</option>
+                        <option value="playeras">Playeras</option>
+                        <option value="termos">Termos</option>
+                        <option value="rompecabezas">Rompecabezas</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Precio (MXN) *</label>
+                    <input type="number" id="precio" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>URL de la imagen</label>
+                    <input type="url" id="imagen" placeholder="https://ejemplo.com/imagen.jpg">
+                    <small style="color: #666;">Deja vacío para usar imagen por defecto</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Badge/Etiqueta</label>
+                    <input type="text" id="badge" placeholder="Ej: Más vendido, Nuevo, Oferta">
+                </div>
+                
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="descripcion" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Orden</label>
+                    <input type="number" id="orden" value="1">
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button type="button" class="btn" onclick="cerrarModalProducto()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        
+        // 🔥 CONFIGURACIÓN DE FIREBASE (MISMA QUE EN LOGIN)
+const firebaseConfig = {
+  apiKey: "AIzaSyBUNwOp9IDlusl_A1868GXsCMiFoj6Ao1Q",
+  authDomain: "gpsito.firebaseapp.com",
+  projectId: "gpsito",
+  storageBucket: "gpsito.firebasestorage.app",
+  messagingSenderId: "84920052709",
+  appId: "1:84920052709:web:ba764f7c0ca62982115d0c",
+  measurementId: "G-C3MNTN0F0H"
+};
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        
+        let productosGlobal = [];
+        
+        // Verificar autenticación
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'admin-login.html';
+            } else {
+                document.getElementById('userEmail').innerHTML = `👤 ${user.email}`;
+                cargarProductos();
+                cargarContactos();
+            }
+        });
+        
+        // Cargar productos
+        async function cargarProductos() {
+            try {
+                const q = query(collection(db, "productos"), orderBy("orden", "asc"));
+                const querySnapshot = await getDocs(q);
+                productosGlobal = [];
+                querySnapshot.forEach((doc) => {
+                    productosGlobal.push({ id: doc.id, ...doc.data() });
+                });
+                mostrarProductos(productosGlobal);
+                actualizarEstadisticas();
+            } catch (error) {
+                console.error("Error cargando productos:", error);
+            }
+        }
+        
+        // Mostrar productos en tabla
+        function mostrarProductos(productos) {
+            const container = document.getElementById('productosList');
+            if (productos.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 40px;">No hay productos registrados</p>';
+                return;
+            }
+            
+            let html = `
+                <table>
+                    <thead>
+                        <tr><th>Imagen</th><th>Producto</th><th>Categoría</th><th>Precio</th><th>Badge</th><th>Acciones</th></tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            productos.forEach(prod => {
+                html += `
+                    <tr>
+                        <td><img src="${prod.imagen || 'https://via.placeholder.com/60'}" class="product-image" onerror="this.src='https://via.placeholder.com/60'"></td>
+                        <td><strong>${prod.nombre}</strong><br><small>${prod.descripcion?.substring(0, 50) || ''}</small></td>
+                        <td>${prod.categoria || 'General'}</td>
+                        <td>$${prod.precio}</td>
+                        <td><span style="background: #3b82f6; color: white; padding: 4px 8px; border-radius: 5px; font-size: 0.75rem;">${prod.badge || 'Normal'}</span></td>
+                        <td>
+                            <button class="btn btn-primary" style="padding: 5px 10px; margin-right: 5px;" onclick="editarProducto('${prod.id}')">✏️</button>
+                            <button class="btn btn-danger" style="padding: 5px 10px;" onclick="eliminarProducto('${prod.id}')">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            html += `</tbody></table>`;
+            container.innerHTML = html;
+        }
+        
+        // Guardar producto
+        window.guardarProducto = async function(e) {
+            e.preventDefault();
+            
+            const productoData = {
+                nombre: document.getElementById('nombre').value,
+                categoria: document.getElementById('categoria').value,
+                precio: parseInt(document.getElementById('precio').value),
+                imagen: document.getElementById('imagen').value || 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=300',
+                badge: document.getElementById('badge').value || 'Destacado',
+                descripcion: document.getElementById('descripcion').value,
+                orden: parseInt(document.getElementById('orden').value),
+                activo: true
+            };
+            
+            const productoId = document.getElementById('productoId').value;
+            
+            try {
+                if (productoId) {
+                    // Actualizar
+                    await updateDoc(doc(db, "productos", productoId), productoData);
+                    alert('✅ Producto actualizado correctamente');
+                } else {
+                    // Crear nuevo
+                    await addDoc(collection(db, "productos"), productoData);
+                    alert('✅ Producto agregado correctamente');
+                }
+                
+                cerrarModalProducto();
+                cargarProductos();
+            } catch (error) {
+                console.error("Error guardando producto:", error);
+                alert('❌ Error al guardar el producto');
+            }
+        };
+        
+        // Editar producto
+        window.editarProducto = function(id) {
+            const producto = productosGlobal.find(p => p.id === id);
+            if (producto) {
+                document.getElementById('productoId').value = producto.id;
+                document.getElementById('nombre').value = producto.nombre;
+                document.getElementById('categoria').value = producto.categoria;
+                document.getElementById('precio').value = producto.precio;
+                document.getElementById('imagen').value = producto.imagen || '';
+                document.getElementById('badge').value = producto.badge || '';
+                document.getElementById('descripcion').value = producto.descripcion || '';
+                document.getElementById('orden').value = producto.orden || 1;
+                document.getElementById('modalTitle').innerText = 'Editar Producto';
+                document.getElementById('productoModal').style.display = 'flex';
+            }
+        };
+        
+        // Eliminar producto
+        window.eliminarProducto = async function(id) {
+            if (confirm('¿Estás seguro de eliminar este producto?')) {
+                try {
+                    await deleteDoc(doc(db, "productos", id));
+                    alert('✅ Producto eliminado');
+                    cargarProductos();
+                } catch (error) {
+                    console.error("Error eliminando:", error);
+                    alert('❌ Error al eliminar');
+                }
+            }
+        };
+        
+        // Cargar contactos
+        async function cargarContactos() {
+            try {
+                const q = query(collection(db, "contactos"), orderBy("fecha", "desc"));
+                const querySnapshot = await getDocs(q);
+                const contactos = [];
+                querySnapshot.forEach((doc) => {
+                    contactos.push({ id: doc.id, ...doc.data() });
+                });
+                mostrarContactos(contactos);
+            } catch (error) {
+                console.error("Error cargando contactos:", error);
+            }
+        }
+        
+        function mostrarContactos(contactos) {
+            const container = document.getElementById('contactosList');
+            if (contactos.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 40px;">No hay mensajes aún</p>';
+                return;
+            }
+            
+            let html = '<table><thead><tr><th>Fecha</th><th>Nombre</th><th>Email</th><th>Producto</th><th>Mensaje</th></tr></thead><tbody>';
+            
+            contactos.forEach(contacto => {
+                const fecha = contacto.fecha?.toDate() || new Date();
+                html += `
+                    <tr>
+                        <td>${fecha.toLocaleDateString()}</td>
+                        <td><strong>${contacto.nombre}</strong></td>
+                        <td>${contacto.email}</td>
+                        <td>${contacto.producto || 'No especificado'}</td>
+                        <td>${contacto.mensaje || '-'}</td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+        
+        // Estadísticas
+        function actualizarEstadisticas() {
+            document.getElementById('totalProductos').innerText = productosGlobal.length;
+            const activos = productosGlobal.filter(p => p.activo !== false).length;
+            document.getElementById('productosActivos').innerText = activos;
+        }
+        
+        // Filtros
+        window.filtrarProductos = function() {
+            const searchTerm = document.getElementById('searchProducto').value.toLowerCase();
+            const categoria = document.getElementById('filtroCategoria').value;
+            
+            let filtrados = productosGlobal;
+            
+            if (searchTerm) {
+                filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(searchTerm));
+            }
+            
+            if (categoria) {
+                filtrados = filtrados.filter(p => p.categoria === categoria);
+            }
+            
+            mostrarProductos(filtrados);
+        };
+        
+        // UI Functions
+        window.showSection = function(section) {
+            document.getElementById('productosSection').style.display = section === 'productos' ? 'block' : 'none';
+            document.getElementById('contactosSection').style.display = section === 'contactos' ? 'block' : 'none';
+            document.getElementById('estadisticasSection').style.display = section === 'estadisticas' ? 'block' : 'none';
+            
+            const titles = { productos: 'Gestión de Productos', contactos: 'Mensajes de Clientes', estadisticas: 'Estadísticas' };
+            document.getElementById('sectionTitle').innerText = titles[section];
+        };
+        
+        window.abrirModalProducto = function() {
+            document.getElementById('productoForm').reset();
+            document.getElementById('productoId').value = '';
+            document.getElementById('modalTitle').innerText = 'Agregar Producto';
+            document.getElementById('productoModal').style.display = 'flex';
+        };
+        
+        window.cerrarModalProducto = function() {
+            document.getElementById('productoModal').style.display = 'none';
+        };
+        
+        window.logout = async function() {
+            await signOut(auth);
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'admin-login.html';
+        };
+        
+        document.getElementById('productoForm').addEventListener('submit', guardarProducto);
+        
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                cerrarModalProducto();
+            }
+        };
+    </script>
+</body>
+</html>
