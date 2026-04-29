@@ -1,1 +1,388 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Grupo Corsa - Empresa constructora líder en México con más de 25 años de experiencia en desarrollos residenciales, comerciales e industriales">
+    <title>Grupo Corsa | Constructora Líder en México</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +52 (81) 1234-5678</span>
+                    <span><i class="fas fa-envelope"></i> info@grupocorsa.com</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <img src="logo-grupo-corsa.svg" alt="Grupo Corsa">
+                    <span class="logo-text">GRUPO CORSA</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#calidad">Calidad</a></li>
+                    <li><a href="#inversionistas">Inversionistas</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <a href="#cotizar" class="btn-primary">Cotizar Proyecto</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-slider">
+            <div class="slide active">
+                <img src="images/hero-1.jpg" alt="Proyecto Residencial">
+                <div class="hero-content container">
+                    <h1>Construyendo el Futuro<br>con Excelencia</h1>
+                    <p>Más de 25 años desarrollando proyectos que transforman ciudades</p>
+                    <div class="hero-buttons">
+                        <a href="#proyectos" class="btn-primary">Nuestros Proyectos</a>
+                        <a href="#contacto" class="btn-secondary">Contáctanos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="container">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Proyectos Entregados</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25</span>
+                    <span class="stat-label">Años de Experiencia</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10,000+</span>
+                    <span class="stat-label">Familias Satisfechas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Estados en México</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="nosotros" class="about-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sobre Grupo Corsa</h2>
+                <p class="section-subtitle">Líderes en construcción y desarrollo inmobiliario</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Construyendo con pasión desde 1998</h3>
+                    <p>En Grupo Corsa, transformamos el panorama urbano con desarrollos de vanguardia que combinan innovación, calidad y sostenibilidad. Nuestra trayectoria nos respalda como una de las constructoras más sólidas de México.</p>
+                    <p>Nos especializamos en proyectos residenciales, comerciales e industriales, siempre comprometidos con los más altos estándares de calidad y satisfacción del cliente.</p>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <i class="fas fa-medal"></i>
+                            <h4>Misión</h4>
+                            <p>Desarrollar proyectos de construcción excepcionales que superen las expectativas de nuestros clientes</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-eye"></i>
+                            <h4>Visión</h4>
+                            <p>Ser la constructora líder en México, reconocida por nuestra innovación y calidad</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Valores</h4>
+                            <p>Integridad, Excelencia, Compromiso e Innovación</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-corsa.jpg" alt="Grupo Corsa Construcción">
+                    <div class="experience-badge">
+                        <span>25+</span>
+                        <span>Años de Experiencia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos Destacados -->
+    <section id="proyectos" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <p class="section-subtitle">Desarrollos que marcan la diferencia</p>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="residencial">Residencial</button>
+                <button class="filter-btn" data-filter="comercial">Comercial</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="residencial">
+                    <img src="images/project-1.jpg" alt="Torre Corsa Residencial">
+                    <div class="project-info">
+                        <span class="project-category">Residencial</span>
+                        <h3>Torre Corsa</h3>
+                        <p>Departamentos de lujo con amenidades premium</p>
+                        <a href="#" class="btn-details">Ver Proyecto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card" data-category="comercial">
+                    <img src="images/project-2.jpg" alt="Plaza Corsa Comercial">
+                    <div class="project-info">
+                        <span class="project-category">Comercial</span>
+                        <h3>Plaza Corsa</h3>
+                        <p>Centro comercial de última generación</p>
+                        <a href="#" class="btn-details">Ver Proyecto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card" data-category="industrial">
+                    <img src="images/project-3.jpg" alt="Parque Industrial Corsa">
+                    <div class="project-info">
+                        <span class="project-category">Industrial</span>
+                        <h3>Parque Industrial Corsa</h3>
+                        <p>Naves industriales de clase mundial</p>
+                        <a href="#" class="btn-details">Ver Proyecto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <p class="section-subtitle">Soluciones integrales en construcción</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Construcción</h3>
+                    <p>Ejecución de proyectos con los más altos estándares de calidad y seguridad</p>
+                    <ul>
+                        <li>Obra civil y edificación</li>
+                        <li>Infraestructura y urbanización</li>
+                        <li>Supervisión de obra</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Desarrollo Inmobiliario</h3>
+                    <p>Desarrollos integrales desde la conceptualización hasta la entrega</p>
+                    <ul>
+                        <li>Desarrollos residenciales</li>
+                        <li>Centros comerciales</li>
+                        <li>Parques industriales</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-hard-hat"></i>
+                    <h3>Obra Pública</h3>
+                    <p>Proyectos de infraestructura que impulsan el desarrollo regional</p>
+                    <ul>
+                        <li>Hospitales y escuelas</li>
+                        <li>Carreteras y puentes</li>
+                        <li>Edificios gubernamentales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificaciones -->
+    <section id="calidad" class="quality">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Calidad y Certificaciones</h2>
+                <p class="section-subtitle">Nuestro compromiso con la excelencia</p>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-item">
+                    <img src="images/iso-9001.png" alt="ISO 9001">
+                    <h4>ISO 9001:2015</h4>
+                    <p>Sistema de Gestión de Calidad</p>
+                </div>
+                <div class="cert-item">
+                    <img src="images/iso-14001.png" alt="ISO 14001">
+                    <h4>ISO 14001:2015</h4>
+                    <p>Gestión Ambiental</p>
+                </div>
+                <div class="cert-item">
+                    <img src="images/ohsas.png" alt="OHSAS 18001">
+                    <h4>ISO 45001:2018</h4>
+                    <p>Seguridad y Salud en el Trabajo</p>
+                </div>
+                <div class="cert-item">
+                    <img src="images/infonavit.png" alt="INFONAVIT">
+                    <h4>INFONAVIT</h4>
+                    <p>Constructor Certificado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inversionistas -->
+    <section id="inversionistas" class="investors">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Zona de Inversionistas</h2>
+                <p class="section-subtitle">Información financiera y oportunidades de inversión</p>
+            </div>
+            <div class="investors-grid">
+                <div class="investor-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Informes Financieros</h3>
+                    <p>Acceda a nuestros reportes trimestrales y anuales</p>
+                    <a href="#" class="btn-secondary">Ver Informes</a>
+                </div>
+                <div class="investor-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Oportunidades</h3>
+                    <p>Conozca nuestros proyectos de inversión actuales</p>
+                    <a href="#" class="btn-secondary">Explorar</a>
+                </div>
+                <div class="investor-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Gobierno Corporativo</h3>
+                    <p>Transparencia y buenas prácticas empresariales</p>
+                    <a href="#" class="btn-secondary">Documentos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Contáctanos</h2>
+                    <p>Estamos listos para hacer realidad tu proyecto</p>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Av. Constitución 1234, Monterrey, N.L.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+52 (81) 1234-5678</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@grupocorsa.com</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <h3>Solicita información</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                        <select>
+                            <option value="">Tipo de proyecto</option>
+                            <option value="residencial">Residencial</option>
+                            <option value="comercial">Comercial</option>
+                            <option value="industrial">Industrial</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Cuéntanos sobre tu proyecto" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Grupo Corsa</h4>
+                    <p>Construyendo el futuro con excelencia desde 1998</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#inversionistas">Inversionistas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#">Construcción</a></li>
+                        <li><a href="#">Desarrollo Inmobiliario</a></li>
+                        <li><a href="#">Obra Pública</a></li>
+                        <li><a href="#">Supervisión</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Suscríbete para recibir novedades</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Grupo Corsa. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Aviso de Privacidad</a>
+                    <a href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
