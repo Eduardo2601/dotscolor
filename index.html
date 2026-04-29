@@ -4,9 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Dots Color | Personalización Premium & Soluciones Digitales</title>
-    <!-- Google Fonts + Material Icons (sutil) -->
+    
+    <!-- Google Fonts + Material Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0,1" />
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Importar Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, updateDoc, doc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+        
+        // Configuración de Firebase (¡REEMPLAZA CON TUS DATOS REALES!)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEFAULT_KEY_REEMPLAZA_CON_TU_API_KEY",
+            authDomain: "dotscolor.firebaseapp.com",
+            projectId: "dotscolor",
+            storageBucket: "dotscolor.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef123456"
+        };
+        
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+        
+        // Hacer disponibles globalmente
+        window.db = db;
+        window.storage = storage;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.getDocs = getDocs;
+        window.query = query;
+        window.orderBy = orderBy;
+        window.limit = limit;
+        window.updateDoc = updateDoc;
+        window.doc = doc;
+        window.deleteDoc = deleteDoc;
+        window.serverTimestamp = serverTimestamp;
+        window.ref = ref;
+        window.uploadBytes = uploadBytes;
+        window.getDownloadURL = getDownloadURL;
+        
+        console.log("✅ Firebase inicializado correctamente");
+        
+        // Cargar productos desde Firestore
+        window.cargarProductosFirebase = async function() {
+            try {
+                const q = query(collection(db, "productos"), orderBy("orden", "asc"), limit(20));
+                const querySnapshot = await getDocs(q);
+                const productos = [];
+                querySnapshot.forEach((doc) => {
+                    productos.push({ id: doc.id, ...doc.data() });
+                });
+                
+                if(productos.length > 0) {
+                    renderizarProductos(productos);
+                } else {
+                    // Si no hay productos, cargar productos por defecto
+                    cargarProductosDefault();
+                }
+                return productos;
+            } catch (error) {
+                console.error("Error cargando productos:", error);
+                cargarProductosDefault();
+            }
+        };
+        
+        // Guardar mensaje de contacto
+        window.guardarContacto = async function(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombreForm')?.value;
+            const email = document.getElementById('emailForm')?.value;
+            const producto = document.getElementById('productoInteres')?.value;
+            const mensaje = document.getElementById('mensajeForm')?.value;
+            
+            if(!nombre || !email) {
+                alert("⚠️ Por favor completa nombre y correo electrónico");
+                return;
+            }
+            
+            try {
+                await addDoc(collection(db, "contactos"), {
+                    nombre: nombre,
+                    email: email,
+                    producto: producto,
+                    mensaje: mensaje,
+                    fecha: serverTimestamp(),
+                    leido: false,
+                    origen: "web_dotscolor"
+                });
+                
+                alert(`✅ ¡Gracias ${nombre}! Hemos recibido tu mensaje. Un asesor te contactará en menos de 2 horas.`);
+                document.getElementById('leadForm').reset();
+            } catch (error) {
+                console.error("Error guardando contacto:", error);
+                alert("❌ Error al enviar. Por favor intenta de nuevo o contáctanos por WhatsApp");
+            }
+        };
+        
+        // Renderizar productos en el grid
+        function renderizarProductos(productos) {
+            const grid = document.getElementById('productsGrid');
+            if(!grid) return;
+            
+            grid.innerHTML = '';
+            productos.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'card-premium';
+                card.setAttribute('data-category', prod.categoria || 'otros');
+                card.innerHTML = `
+                    <div style="position: relative; overflow: hidden;">
+                        <span class="badge-premium">${prod.badge || '✨ Destacado'}</span>
+                        <img src="${prod.imagen || 'https://via.placeholder.com/300x260?text=Producto'}" alt="${prod.nombre}" class="product-img" onerror="this.src='https://via.placeholder.com/300x260?text=Imagen+no+disponible'">
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3 style="font-size: 1.35rem;">${prod.nombre}</h3>
+                        <p style="color: #5A6B87; margin: 8px 0; font-size: 0.85rem;">${prod.descripcion || 'Calidad premium'}</p>
+                        <div style="margin: 12px 0; font-weight: 700; font-size: 1.4rem;">$${prod.precio} MXN</div>
+                        <button class="btn btn-secondary" style="width:100%; justify-content: center;" onclick="openWhatsAppCotizar('${prod.nombre}')">
+                            Solicitar cotización
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        // Productos default en caso de no haber conexión
+        function cargarProductosDefault() {
+            const productosDefault = [
+                { nombre: "Taza Premium 11oz", categoria: "tazas", precio: 105, imagen: "https://m.media-amazon.com/images/I/61WB+6ppLgL._AC_SX679_.jpg", badge: "⭐ Más vendido", descripcion: "Cerámica blanca · sublimación full color", orden: 1 },
+                { nombre: "Taza Interior Color", categoria: "tazas", precio: 115, imagen: "https://fotoideas.mx/cdn/shop/files/FOTOTAZAS.png?v=1745524473", badge: "🎨 Interior color", descripcion: "Asa e interior pigmentado · elegante", orden: 2 },
+                { nombre: "Taza Mágica térmica", categoria: "tazas", precio: 135, imagen: "https://m.media-amazon.com/images/I/61vRjFmN5sL._AC_SL1500_.jpg", badge: "✨ Mágica", descripcion: "Revela diseño con calor", orden: 3 },
+                { nombre: "Playera Infantil DTF", categoria: "playeras", precio: 195, imagen: "https://www.tenvinilo.mx/webp/t-shirts/large/camiseta-ninos-futbol-personalizado-45384.webp", badge: "👕 DTF Pro", descripcion: "Alta durabilidad, colores vivos", orden: 4 },
+                { nombre: "Termo Acero 500ml", categoria: "termos", precio: 210, imagen: "https://http2.mlstatic.com/D_NQ_NP_2X_933190-MLM54271416656_032023-F.webp", badge: "🔥 Acero inox", descripcion: "Impresión 360°, conserva temperatura", orden: 5 },
+                { nombre: "Rompecabezas 100pzas", categoria: "rompecabezas", precio: 250, imagen: "https://m.media-amazon.com/images/I/71WzLhysC5L._AC_SX679_.jpg", badge: "🧩 Edición especial", descripcion: "Foto personal, estuche premium", orden: 6 }
+            ];
+            renderizarProductos(productosDefault);
+        }
+        
+        // Inicializar todo cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarProductosFirebase();
+            
+            const leadForm = document.getElementById('leadForm');
+            if(leadForm) {
+                leadForm.addEventListener('submit', guardarContacto);
+            }
+        });
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -22,7 +172,6 @@
             line-height: 1.45;
         }
 
-        /* tipografía refinada */
         h1, h2, h3, h4, .logo, .btn, .nav-link {
             letter-spacing: -0.02em;
         }
@@ -33,7 +182,6 @@
             padding: 0 32px;
         }
 
-        /* header profesional  */
         .navbar {
             position: fixed;
             top: 0;
@@ -43,7 +191,6 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid #E9EDF2;
             z-index: 1100;
-            transition: all 0.2s;
         }
 
         .navbar-container {
@@ -61,7 +208,6 @@
             -webkit-background-clip: text;
             color: transparent;
             text-decoration: none;
-            letter-spacing: -0.02em;
         }
 
         .nav-menu {
@@ -82,7 +228,6 @@
             color: #0057B3;
         }
 
-        /* botones institucionales */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -108,18 +253,6 @@
         .btn-primary:hover {
             background: #1A3A5A;
             transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(10, 37, 64, 0.15);
-        }
-
-        .btn-outline-light {
-            border: 1px solid rgba(255,255,255,0.35);
-            background: transparent;
-            color: white;
-        }
-
-        .btn-outline-light:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: white;
         }
 
         .btn-secondary {
@@ -131,7 +264,6 @@
             background: #E2E9F2;
         }
 
-        /* Hero section — elegante */
         .hero {
             background: #F8FAFE;
             padding: 120px 0 80px;
@@ -207,7 +339,6 @@
             display: block;
         }
 
-        /* cards refinadas */
         .card-premium {
             background: #FFFFFF;
             border-radius: 28px;
@@ -219,7 +350,6 @@
         .card-premium:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
-            border-color: #CBD5E1;
         }
 
         .product-img {
@@ -227,10 +357,6 @@
             height: 260px;
             object-fit: cover;
             transition: transform 0.5s ease;
-        }
-
-        .card-premium:hover .product-img {
-            transform: scale(1.02);
         }
 
         .badge-premium {
@@ -243,17 +369,15 @@
             border-radius: 100px;
             font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.3px;
+            z-index: 2;
         }
 
-        /* grid products */
         .grid-prod {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 28px;
         }
 
-        /* category filters */
         .filter-group {
             display: flex;
             gap: 12px;
@@ -280,7 +404,6 @@
             border-color: #0A2540;
         }
 
-        /* proceso  steps profesional */
         .step-icon {
             width: 72px;
             height: 72px;
@@ -295,7 +418,6 @@
             color: #0A2540;
         }
 
-        /* sección servicios */
         .service-card-h {
             display: flex;
             align-items: center;
@@ -311,11 +433,9 @@
 
         .service-card-h:hover {
             background: #F9FCFE;
-            border-color: #CBD5E1;
             transform: translateY(-2px);
         }
 
-        /* contacto premium */
         .contact-premium {
             background: linear-gradient(105deg, #F8FAFE 0%, #FFFFFF 100%);
             border-radius: 48px;
@@ -340,27 +460,27 @@
             box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.08);
         }
 
-        /* footer */
         .footer-dark {
             background: #0F172A;
             color: #CBD5E1;
+            padding: 48px 0 32px;
         }
 
-        /* responsive */
-        @media (max-width: 1000px) {
-            .grid-prod { grid-template-columns: repeat(2, 1fr); }
-            .hero h1 { font-size: 2.8rem; }
+        .admin-panel-btn {
+            position: fixed;
+            bottom: 100px;
+            right: 28px;
+            background: #0A2540;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            z-index: 1100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        @media (max-width: 720px) {
-            .grid-prod { grid-template-columns: 1fr; }
-            .nav-menu { display: none; }
-            .container { padding: 0 24px; }
-            .contact-premium { padding: 32px; }
-            .hero-grid { flex-direction: column; }
-        }
-        .material-symbols-rounded {
-            font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-        }
+
         .whatsapp-float-clean {
             position: fixed;
             bottom: 28px;
@@ -378,11 +498,23 @@
             text-decoration: none;
             z-index: 1100;
             transition: 0.2s;
-            border: 1px solid rgba(255,255,255,0.2);
         }
-        .whatsapp-float-clean:hover {
-            background: #0F2C44;
-            transform: scale(1.02);
+
+        @media (max-width: 1000px) {
+            .grid-prod { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2.8rem; }
+        }
+        
+        @media (max-width: 720px) {
+            .grid-prod { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+            .container { padding: 0 24px; }
+            .contact-premium { padding: 32px; }
+            .hero-grid { flex-direction: column; }
+        }
+        
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
         }
     </style>
 </head>
@@ -396,22 +528,19 @@
             <li><a href="#proceso" class="nav-link">Proceso</a></li>
             <li><a href="#servicios" class="nav-link">Soluciones</a></li>
             <li><a href="#contacto" class="nav-link">Contacto</a></li>
-            <li><a href="factura.html" class="nav-link">Facturación</a></li>
-            <li><a href="soporte-tecnico.html" class="nav-link">Soporte IT</a></li>
+            <li><a href="admin.html" class="nav-link">Admin</a></li>
         </ul>
         <a href="#contacto" class="btn btn-primary">Cotizar proyecto</a>
     </div>
 </div>
 
 <main>
-    <!-- Hero section con estatuto de calidad -->
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-content">
                 <div class="hero-badge">➕ Personalización profesional desde 2018</div>
                 <h1>Diseño, tecnología y <span>calidad corporativa</span> en cada producto</h1>
-                <p>Playeras, termos, tazas, rompecabezas y más. Soluciones integrales para marcas, eventos y regalos 
-                empresariales con estándares premium y envíos a toda la república.</p>
+                <p>Playeras, termos, tazas, rompecabezas y más. Soluciones integrales para marcas, eventos y regalos empresariales.</p>
                 <div style="display: flex; gap: 18px; flex-wrap: wrap;">
                     <a href="#productos" class="btn btn-primary">Explorar productos</a>
                     <a href="#contacto" class="btn btn-secondary">Solicitar cotización</a>
@@ -428,104 +557,29 @@
         </div>
     </section>
 
-    <!-- Filtros de categoria (interacción visual) -->
     <div class="container" style="margin-top: -36px; margin-bottom: 40px;">
         <div class="filter-group" id="categoryFilters">
             <span class="filter-chip active" data-filter="all">Todos</span>
+            <span class="filter-chip" data-filter="tazas">Tazas</span>
             <span class="filter-chip" data-filter="playeras">Playeras</span>
             <span class="filter-chip" data-filter="termos">Termos</span>
-            <span class="filter-chip" data-filter="tazas">Tazas</span>
             <span class="filter-chip" data-filter="rompecabezas">Rompecabezas</span>
-            <span class="filter-chip" data-filter="gorras">Gorras</span>
+            <span class="filter-chip" data-filter="otros">Otros</span>
         </div>
     </div>
 
-    <!-- productos destacados (cards premium) -->
     <section id="productos" style="padding: 30px 0 70px;">
         <div class="container">
             <div style="text-align: center; margin-bottom: 48px;">
                 <h2 style="font-size: 2.4rem; font-weight: 700;">Productos exclusivos</h2>
-                <p style="color: #4F5B6E; max-width: 600px; margin: 12px auto 0;">Alta definición, materiales de primera calidad y acabados profesionales</p>
+                <p style="color: #4F5B6E; max-width: 600px; margin: 12px auto 0;">Datos en tiempo real desde Firebase</p>
             </div>
             <div class="grid-prod" id="productsGrid">
-                <!-- items dinámicos pero también estáticos con data-category para filtro -->
-                <div class="card-premium" data-category="tazas">
-                    <div style="position: relative; overflow: hidden;">
-                        <span class="badge-premium">⭐ Más vendido</span>
-                        <img src="https://m.media-amazon.com/images/I/61WB+6ppLgL._AC_SX679_.jpg" alt="Taza profesional" class="product-img">
-                    </div>
-                    <div style="padding: 24px;">
-                        <h3 style="font-size: 1.35rem;">Taza Premium 11oz</h3>
-                        <p style="color: #5A6B87; margin: 8px 0; font-size: 0.85rem;">Cerámica blanca · sublimación full color</p>
-                        <div style="margin: 12px 0; font-weight: 700; font-size: 1.4rem;">$105 MXN</div>
-                        <button class="btn btn-secondary" style="width:100%; justify-content: center;" onclick="openWhatsAppCotizar('Taza Premium 11oz')">Solicitar cotización</button>
-                    </div>
-                </div>
-                <div class="card-premium" data-category="tazas">
-                    <div style="position: relative; overflow: hidden;">
-                        <span class="badge-premium">🎨 Interior color</span>
-                        <img src="https://fotoideas.mx/cdn/shop/files/FOTOTAZAS.png?v=1745524473" alt="Taza interior color" class="product-img">
-                    </div>
-                    <div style="padding: 24px;">
-                        <h3 style="font-size: 1.35rem;">Taza Interior Color</h3>
-                        <p style="color: #5A6B87; margin: 8px 0;">Asa e interior pigmentado · elegante</p>
-                        <div style="margin: 12px 0; font-weight: 700; font-size: 1.4rem;">$115 MXN</div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Taza Interior Color')">Cotizar</button>
-                    </div>
-                </div>
-                <div class="card-premium" data-category="tazas">
-                    <div style="position: relative;"><span class="badge-premium">✨ Mágica</span>
-                        <img src="https://m.media-amazon.com/images/I/61vRjFmN5sL._AC_SL1500_.jpg" alt="Taza térmica" class="product-img">
-                    </div>
-                    <div style="padding: 24px;">
-                        <h3>Taza Mágica térmica</h3>
-                        <p style="color: #5A6B87;">Revela diseño con calor · regalo sorpresa</p>
-                        <div class="price" style="font-size:1.4rem; font-weight:700;">$135 MXN</div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Taza Mágica')">Cotizar</button>
-                    </div>
-                </div>
-                <div class="card-premium" data-category="playeras">
-                    <div><span class="badge-premium">👕 DTF Pro</span>
-                        <img src="https://www.tenvinilo.mx/webp/t-shirts/large/camiseta-ninos-futbol-personalizado-45384.webp" alt="Playera infantil DTF" class="product-img">
-                    </div>
-                    <div style="padding: 24px;">
-                        <h3>Playera Infantil DTF</h3>
-                        <p style="color: #5A6B87;">Alta durabilidad, cores vivos · tallas 2-12</p>
-                        <div style="font-weight:700; font-size:1.4rem;">$195 MXN</div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Playera Infantil Personalizada')">Cotizar</button>
-                    </div>
-                </div>
-                <!-- Productos extra adicional para dar seriedad -->
-                <div class="card-premium" data-category="termos">
-                    <div><span class="badge-premium">🔥 Acero inox</span>
-                        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_933190-MLM54271416656_032023-F.webp" alt="Termo profesional" class="product-img">
-                    </div>
-                    <div style="padding: 24px;">
-                        <h3>Termo Acero 500ml</h3>
-                        <p style="color: #5A6B87;">Impresión 360°, conserva temperatura</p>
-                        <div style="font-size:1.4rem; font-weight:700;">$210 MXN</div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Termo acero inoxidable')">Cotizar</button>
-                    </div>
-                </div>
-                <div class="card-premium" data-category="rompecabezas">
-                    <div><span class="badge-premium">🧩 Edición especial</span>
-                        <img src="https://m.media-amazon.com/images/I/71WzLhysC5L._AC_SX679_.jpg" alt="Rompecabezas personal" class="product-img">
-                    </div>
-                    <div style="padding: 24px;">
-                        <h3>Rompecabezas 100pzas</h3>
-                        <p style="color: #5A6B87;">Foto personal, estuche premium</p>
-                        <div style="font-weight:700; font-size:1.4rem;">$250 MXN</div>
-                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Rompecabezas personalizado')">Cotizar</button>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 45px;">
-                <a href="todos-productos.html" class="btn btn-primary" style="background: #1F2F4F;">Ver inventario completo →</a>
+                <div style="text-align: center; padding: 40px;">Cargando productos...</div>
             </div>
         </div>
     </section>
 
-    <!-- Proceso confiable (3 pasos corporativos) -->
     <section id="proceso" style="background: #F9FCFE; padding: 70px 0;">
         <div class="container">
             <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
@@ -540,7 +594,6 @@
         </div>
     </section>
 
-    <!-- Servicios complementarios -->
     <section id="servicios" style="padding: 70px 0;">
         <div class="container">
             <div style="text-align: center; margin-bottom: 48px;"><h2>Soluciones integrales para empresas</h2><p>Más allá de la personalización, potenciamos tu negocio digital</p></div>
@@ -557,7 +610,6 @@
         </div>
     </section>
 
-    <!-- Contacto de alta conversion -->
     <section id="contacto" style="padding: 10px 0 80px;">
         <div class="container">
             <div class="contact-premium">
@@ -572,12 +624,17 @@
                         </div>
                     </div>
                     <div>
-                        <form id="leadForm" action="#" method="post">
+                        <form id="leadForm">
                             <div style="display: grid; gap: 16px;">
                                 <input type="text" placeholder="Nombre completo" class="form-control-premium" required id="nombreForm">
                                 <input type="email" placeholder="Correo empresarial" class="form-control-premium" required id="emailForm">
                                 <select class="form-control-premium" id="productoInteres">
-                                    <option>Producto de interés</option><option>Playera personalizada</option><option>Termo / Taza</option><option>Rompecabezas</option><option>Lotes para empresa</option><option>Soporte técnico / desarrollo web</option>
+                                    <option>Producto de interés</option>
+                                    <option>Playera personalizada</option>
+                                    <option>Termo / Taza</option>
+                                    <option>Rompecabezas</option>
+                                    <option>Lotes para empresa</option>
+                                    <option>Soporte técnico / desarrollo web</option>
                                 </select>
                                 <textarea rows="3" placeholder="Detalla tu idea, cantidad o requerimiento técnico..." class="form-control-premium" id="mensajeForm"></textarea>
                                 <button type="submit" class="btn btn-primary" style="justify-content: center; background:#0A2540;">Enviar solicitud →</button>
@@ -590,7 +647,7 @@
     </section>
 </main>
 
-<footer class="footer-dark" style="padding: 48px 0 32px;">
+<footer class="footer-dark">
     <div class="container">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 48px;">
             <div><h4 style="color:white; margin-bottom:20px;">Dots Color</h4><p style="color:#94A3B8;">Fabricación digital y branding personal. Calidad corporativa, resultados impecables.</p></div>
@@ -598,69 +655,65 @@
             <div><h4 style="color:white;">Enlaces</h4><ul style="list-style:none; margin-top:12px;"><li><a href="#" style="color:#CBD5E1; text-decoration:none;">Facturación</a></li><li><a href="#" style="color:#CBD5E1;">Políticas</a></li><li><a href="soporte-tecnico.html" style="color:#CBD5E1;">Soporte técnico</a></li></ul></div>
             <div><h4 style="color:white;">Contacto directo</h4><p style="margin-top:12px;">📞 844 692 93 85</p><p>✉️ ventas@dotscolor.com</p><p>📍 Saltillo, Coahuila · México</p></div>
         </div>
-        <div style="border-top: 1px solid #2D3A5A; margin-top: 40px; padding-top: 28px; text-align: center; font-size: 0.85rem;">© 2026 DOTS COLOR — Personalización Premium & Soluciones Tecnológicas</div>
+        <div style="border-top: 1px solid #2D3A5A; margin-top: 40px; padding-top: 28px; text-align: center; font-size: 0.85rem;">© 2026 DOTS COLOR — Personalización Premium & Soluciones Tecnológicas | Datos en Firebase</div>
     </div>
 </footer>
 
-<!-- botón flotante WhatsApp corporativo -->
+<a href="admin.html" class="admin-panel-btn">🔧 Panel Admin</a>
 <a href="https://wa.me/5218446929385?text=Hola%2C%20requiero%20informaci%C3%B3n%20profesional%20sobre%20productos%20personalizados" class="whatsapp-float-clean" target="_blank">
     <span class="material-symbols-rounded" style="font-size: 24px;">chat</span> Cotizar por WhatsApp
 </a>
 
 <script>
-    // filtro de categorías (MUY PRO)
-    const filterChips = document.querySelectorAll('.filter-chip');
-    const products = document.querySelectorAll('.card-premium');
-    function filterProducts(category) {
-        products.forEach(prod => {
-            if(category === 'all' || prod.getAttribute('data-category') === category) {
-                prod.style.display = '';
-            } else {
-                prod.style.display = 'none';
-            }
-        });
-    }
-    filterChips.forEach(chip => {
-        chip.addEventListener('click', function() {
-            filterChips.forEach(c => c.classList.remove('active'));
-            this.classList.add('active');
-            const filterVal = this.getAttribute('data-filter');
-            filterProducts(filterVal);
-        });
-    });
-    // funcion cotizar por WhatsApp desde botones dinamicos
-    window.openWhatsAppCotizar = (productoNombre) => {
-        const msg = `Hola equipo de Dots Color, quisiera cotizar el producto: ${productoNombre} para uso profesional. ¿Podrían brindarme más información?`;
-        const url = `https://wa.me/5218446929385?text=${encodeURIComponent(msg)}`;
-        window.open(url, '_blank');
-    };
-    // manejo formulario contacto básico (prevención redirect demo)
-    const leadForm = document.getElementById('leadForm');
-    if(leadForm) {
-        leadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombreForm')?.value || '';
-            const email = document.getElementById('emailForm')?.value || '';
-            if(nombre && email) {
-                alert(`✅ Recibido ${nombre}, en breve un asesor Dots Color dará seguimiento a su solicitud.`);
-                leadForm.reset();
-            } else {
-                alert('Por favor complete nombre y correo para recibir asesoría.');
-            }
-        });
-    }
-    // smooth scroll elegante
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if(href === "#" || href === "") return;
-            const targetEl = document.querySelector(href);
-            if(targetEl) {
-                e.preventDefault();
-                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+    // Filtro de productos y función WhatsApp (no-module)
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterChips = document.querySelectorAll('.filter-chip');
+        window.openWhatsAppCotizar = function(productoNombre) {
+            const msg = `Hola equipo de Dots Color, quisiera cotizar el producto: ${productoNombre} para uso profesional.`;
+            const url = `https://wa.me/5218446929385?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        };
+        
+        // Función de filtro después de que se rendericen los productos
+        setTimeout(() => {
+            const products = document.querySelectorAll('.card-premium');
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', function() {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    const filterVal = this.getAttribute('data-filter');
+                    products.forEach(prod => {
+                        if(filterVal === 'all' || prod.getAttribute('data-category') === filterVal) {
+                            prod.style.display = '';
+                        } else {
+                            prod.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }, 500);
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if(href === "#" || href === "") return;
+                const targetEl = document.querySelector(href);
+                if(targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
     });
+</script>
+
+<!-- Archivo de administración separado (admin.html) -->
+<script>
+    // Crear página de admin si no existe (simulación)
+    if(!window.location.pathname.includes('admin.html')) {
+        console.log("Web con Firebase integrado - Crea admin.html para gestionar productos");
+    }
 </script>
 </body>
 </html>
