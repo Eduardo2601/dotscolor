@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personaliza | Productos Personalizados</title>
-
-    <!-- Material UI CDN -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dots Color | Personalización Premium & Soluciones Digitales</title>
+    <!-- Google Fonts + Material Icons (sutil) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0,1" />
     <style>
         * {
             margin: 0;
@@ -18,1123 +15,652 @@
         }
 
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #f9fafb;
-            color: #2d314b;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #FFFFFF;
+            color: #1A1F36;
+            scroll-behavior: smooth;
+            line-height: 1.45;
         }
 
-        /* Layout */
-        .app-root {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .main-content {
-            flex: 1;
-            padding-top: 64px;
+        /* tipografía refinada */
+        h1, h2, h3, h4, .logo, .btn, .nav-link {
+            letter-spacing: -0.02em;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 32px;
         }
 
-        /* Typography */
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            color: #1C1E2A;
-        }
-
-        h2 {
-            font-size: 2.25rem;
-            font-weight: 600;
-            line-height: 1.3;
-            letter-spacing: -0.01em;
-            margin-bottom: 16px;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-
-        .text-secondary {
-            color: #637381;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Navbar */
+        /* header profesional  */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(145, 158, 171, 0.12);
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E9EDF2;
             z-index: 1100;
+            transition: all 0.2s;
         }
 
         .navbar-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 64px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+            height: 72px;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             font-weight: 700;
-            color: #007FFF;
+            background: linear-gradient(135deg, #1F2A4A 0%, #2C3E66 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
             text-decoration: none;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.02em;
         }
 
         .nav-menu {
             display: flex;
-            gap: 32px;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-link {
-            color: #1C1E2A;
             text-decoration: none;
-            font-size: 0.95rem;
             font-weight: 500;
+            font-size: 0.95rem;
+            color: #2A3B5C;
             transition: color 0.2s;
         }
 
         .nav-link:hover {
-            color: #b70000;
+            color: #0057B3;
         }
 
-        /* Botones */
+        /* botones institucionales */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 60px;
             font-weight: 600;
-            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
             cursor: pointer;
             border: none;
-            transition: all 0.2s;
-            gap: 8px;
-            background: whitesmoke;
+            background: transparent;
+            text-decoration: none;
         }
 
         .btn-primary {
-            background-color: #007FFF;
+            background: #0A2540;
             color: white;
-            box-shadow: 0 8px 16px -4px rgba(0, 127, 255, 0.24);
+            box-shadow: 0 2px 6px rgba(10, 37, 64, 0.1);
         }
 
         .btn-primary:hover {
-            background-color: #0066CC;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 20px -8px rgba(0, 127, 255, 0.36);
+            background: #1A3A5A;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(10, 37, 64, 0.15);
         }
 
-        .btn-outline {
-            background: #007FFF;
-            border: 1px solid #ffffff;
-            color: #ffffff;
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(0, 127, 255, 0.04);
-        }
-
-        .btn-large {
-            padding: 12px 28px;
-            font-size: 1rem;
-        }
-
-        /* Cards */
-        .mui-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.2), 0 12px 24px -4px rgba(145, 158, 171, 0.12);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mui-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.24), 0 20px 32px -8px rgba(145, 158, 171, 0.24);
-        }
-
-        .card-media {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .mui-card:hover .card-media {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            padding: 24px;
-            flex: 1;
-        }
-
-        .card-actions {
-            padding: 0 24px 24px 24px;
-            display: flex;
-            gap: 12px;
-        }
-
-        /* Badges */
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .chip-new {
-            background: linear-gradient(135deg, #00A76F, #007867);
+        .btn-outline-light {
+            border: 1px solid rgba(255,255,255,0.35);
+            background: transparent;
             color: white;
         }
 
-        .chip-hot {
-            background: linear-gradient(135deg, #FF5630, #FF3D1A);
-            color: white;
+        .btn-outline-light:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: white;
         }
 
-        .badge {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            z-index: 1;
+        .btn-secondary {
+            background: #F0F4F9;
+            color: #0A2540;
         }
 
-        /* Grid */
-        .grid {
-            display: grid;
-            gap: 24px;
+        .btn-secondary:hover {
+            background: #E2E9F2;
         }
 
-        .grid-4 {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        /* Hero Section - Enfocado en productos */
+        /* Hero section — elegante */
         .hero {
-            background: linear-gradient(135deg, #1C1E2A 0%, #2D3349 100%);
-            color: white;
-            padding: 60px 0;
-            position: relative;
-            overflow: hidden;
+            background: #F8FAFE;
+            padding: 120px 0 80px;
+            border-bottom: 1px solid #E9EDF2;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(0, 127, 255, 0.15) 0%, transparent 50%);
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
+        .hero-grid {
+            display: flex;
             align-items: center;
-            position: relative;
-            z-index: 1;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #EFF3F9;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0057B3;
+            margin-bottom: 24px;
         }
 
         .hero h1 {
-            color: white;
-            font-size: 3.2rem;
-            margin-bottom: 20px;
+            font-size: 3.7rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #101828;
+            margin-bottom: 24px;
         }
 
         .hero h1 span {
-            color: #007FFF;
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: 8px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: rgba(0, 127, 255, 0.3);
-            z-index: -1;
+            background: linear-gradient(120deg, #0F2B4D, #2D6A9F);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
         .hero p {
             font-size: 1.2rem;
-            opacity: 0.8;
+            color: #475569;
+            max-width: 550px;
             margin-bottom: 32px;
-            max-width: 500px;
         }
 
-        .hero-buttons {
+        .hero-stats {
             display: flex;
-            gap: 16px;
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .stat-item h4 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0A2540;
         }
 
         .hero-image {
+            flex: 1;
+            border-radius: 36px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .hero-image img {
             width: 100%;
-            border-radius: 30px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+            height: auto;
+            display: block;
         }
 
-        /* Categories */
-        .categories {
+        /* cards refinadas */
+        .card-premium {
+            background: #FFFFFF;
+            border-radius: 28px;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid #EFF3F9;
+            overflow: hidden;
+        }
+
+        .card-premium:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+            border-color: #CBD5E1;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card-premium:hover .product-img {
+            transform: scale(1.02);
+        }
+
+        .badge-premium {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #0A2540;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* grid products */
+        .grid-prod {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+        }
+
+        /* category filters */
+        .filter-group {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin: 40px 0;
+            justify-content: center;
+            margin-bottom: 48px;
         }
 
-        .category-chip {
-            padding: 8px 24px;
+        .filter-chip {
+            padding: 8px 22px;
             border-radius: 40px;
             background: white;
-            border: 1px solid rgba(145, 158, 171, 0.24);
-            color: #1C1E2A;
+            border: 1px solid #E2E8F0;
             font-weight: 500;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s;
+            color: #2D3A5E;
         }
 
-        .category-chip:hover,
-        .category-chip.active {
-            background: #007FFF;
+        .filter-chip.active, .filter-chip:hover {
+            background: #0A2540;
             color: white;
-            border-color: #007FFF;
+            border-color: #0A2540;
         }
 
-        /* Price */
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #007FFF;
-            margin: 12px 0;
-        }
-
-        .price small {
-            font-size: 0.875rem;
-            font-weight: 400;
-            color: #637381;
-        }
-
-        /* Service Cards (más pequeñas) */
-        .service-mini-card {
+        /* proceso  steps profesional */
+        .step-icon {
+            width: 72px;
+            height: 72px;
+            background: #EFF3F9;
+            border-radius: 60px;
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 20px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0A2540;
+        }
+
+        /* sección servicios */
+        .service-card-h {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #FFFFFF;
+            border: 1px solid #EDF2F7;
+            border-radius: 24px;
+            padding: 20px 24px;
             transition: all 0.2s;
-            height: 100%;
             text-decoration: none;
             color: inherit;
         }
 
-        .service-mini-card:hover {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            transform: translateY(-4px);
+        .service-card-h:hover {
+            background: #F9FCFE;
+            border-color: #CBD5E1;
+            transform: translateY(-2px);
         }
 
-        .service-icon-small {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(0, 127, 255, 0.08);
-            color: #007FFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* contacto premium */
+        .contact-premium {
+            background: linear-gradient(105deg, #F8FAFE 0%, #FFFFFF 100%);
+            border-radius: 48px;
+            padding: 56px 56px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 20px 30px -12px rgba(0,0,0,0.05);
+            border: 1px solid #EFF3F9;
         }
 
-        .service-icon-small .material-icons {
-            font-size: 24px;
+        .form-control-premium {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            border: 1px solid #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            transition: 0.2s;
+            background: #FFFFFF;
         }
 
-        .service-content h4 {
-            font-size: 1rem;
-            margin-bottom: 4px;
+        .form-control-premium:focus {
+            outline: none;
+            border-color: #0A2540;
+            box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.08);
         }
 
-        .service-content p {
-            font-size: 0.875rem;
-            color: #637381;
+        /* footer */
+        .footer-dark {
+            background: #0F172A;
+            color: #CBD5E1;
         }
 
-        /* Features */
-        .feature-item {
+        /* responsive */
+        @media (max-width: 1000px) {
+            .grid-prod { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2.8rem; }
+        }
+        @media (max-width: 720px) {
+            .grid-prod { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+            .container { padding: 0 24px; }
+            .contact-premium { padding: 32px; }
+            .hero-grid { flex-direction: column; }
+        }
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+        }
+        .whatsapp-float-clean {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #1C3D5A;
+            color: white;
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 0;
-        }
-
-        .feature-icon {
-            color: #00A76F;
-        }
-
-        /* Formulario compacto */
-        .form-compact {
-            background: white;
-            border-radius: 24px;
-            padding: 32px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid rgba(145, 158, 171, 0.32);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: 'Roboto', sans-serif;
-            transition: all 0.2s;
-        }
-
-
-
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: #007FFF;
-            box-shadow: 0 0 0 3px rgba(0, 127, 255, 0.16);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1C1E2A;
-            color: white;
-            padding: 48px 0 24px;
-            margin-top: 60px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
+            padding: 12px 24px;
+            border-radius: 80px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
             text-decoration: none;
-            transition: color 0.2s;
+            z-index: 1100;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.875rem;
-        }
-
-        /* Section spacing */
-        .section {
-            padding: 60px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .section-header h2 {
-            margin-bottom: 12px;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .grid-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .grid-4,
-            .grid-3,
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+        .whatsapp-float-clean:hover {
+            background: #0F2C44;
+            transform: scale(1.02);
         }
     </style>
 </head>
-
 <body>
-    <div class="app-root">
-        <!-- Navbar -->
-        <header class="navbar">
-            <div class="navbar-container">
-                <a href="#" class="logo">✨ Dots Color</a>
 
-                <ul class="nav-menu">
-                
-                    <li><a href="#productos" class="nav-link">Productos</a></li>
-                    <li><a href="#personalizar" class="nav-link">Cómo personalizar</a></li>
-                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                      <li><a href="factura.html" class="nav-link">Solicita tu factura</a></li>
-                                  <li><a href="soporte-tecnico.html" class="nav-link">Soporte</a></li>
-                                      <li><a href="desarrollo-web.html" class="nav-link">Desarrollo Web </a></li>
-                </ul>
+<div class="navbar">
+    <div class="container navbar-container">
+        <a href="#" class="logo">DOTS COLOR</a>
+        <ul class="nav-menu">
+            <li><a href="#productos" class="nav-link">Catálogo</a></li>
+            <li><a href="#proceso" class="nav-link">Proceso</a></li>
+            <li><a href="#servicios" class="nav-link">Soluciones</a></li>
+            <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            <li><a href="factura.html" class="nav-link">Facturación</a></li>
+            <li><a href="soporte-tecnico.html" class="nav-link">Soporte IT</a></li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary">Cotizar proyecto</a>
+    </div>
+</div>
 
-                <a href="#contacto" class="btn btn-primary">Cotizar ahora</a>
-            </div>
-        </header>
-
-        <main class="main-content">
-            <!-- Hero Section enfocado en productos -->
-            <section class="hero">
-                <div class="hero-container">
-                    <div>
-                        <h1>Dale tu estilo a <span>cada producto</span></h1>
-                        <p>Playeras, termos, tazas, rompecabezas y más. Personalizamos cualquier producto con tu diseño.
-                            Calidad premium y entrega rápida.</p>
-                        <div class="hero-buttons">
-                            <a href="#productos" class="btn btn-primary btn-large">Ver productos</a>
-                            <a href="#personalizar" class="btn btn-outline-light btn-large">Cómo funciona</a>
-                        </div>
-
-                        <!-- Trust badges -->
-                        <div style="display: flex; gap: 24px; margin-top: 40px;">
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <span class="material-icons" style="color: #ffea01;">verified</span>
-                                <span style="font-size: 0.9rem;">Sin mínimo</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <span class="material-icons" style="color: #00bbff;">local_shipping</span>
-                                <span style="font-size: 0.9rem;">Envío gratis</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <span class="material-icons" style="color: #ff06c9;">palette</span>
-                                <span style="font-size: 0.9rem;">Diseño incluido</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <img src="https://scontent.fslw1-1.fna.fbcdn.net/v/t39.30808-6/571038510_4214478678780700_4986668978705025461_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHDnUNnbiSuTSX4kK1Xl6QYvDcbxh2XRUK8NxvGHZdFQpQJ1RO0suM8wwETIgUiEmniDUADiHaSkNYStwrw0B-U&_nc_ohc=0J6H9sB2xlQQ7kNvwGy_rk4&_nc_oc=AdkBDoAiLm840fIw_gRBE5retgG1VEr6icNOrbGbtw1KDUsLS6euurR8a6QWQNQpFfUSx5kXbSjmxGS3vB8H-rwQ&_nc_zt=23&_nc_ht=scontent.fslw1-1.fna&_nc_gid=p75h5YjdbYaYmVYUMF-83A&_nc_ss=8&oh=00_AfztQkatJazB5F-r8x1Ze2ACWc-cCkTCsm8B3QLUffB8Bw&oe=69B6596E"
-                            alt="Productos personalizados" class="hero-image">
-                    </div>
+<main>
+    <!-- Hero section con estatuto de calidad -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">➕ Personalización profesional desde 2018</div>
+                <h1>Diseño, tecnología y <span>calidad corporativa</span> en cada producto</h1>
+                <p>Playeras, termos, tazas, rompecabezas y más. Soluciones integrales para marcas, eventos y regalos 
+                empresariales con estándares premium y envíos a toda la república.</p>
+                <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+                    <a href="#productos" class="btn btn-primary">Explorar productos</a>
+                    <a href="#contacto" class="btn btn-secondary">Solicitar cotización</a>
                 </div>
-            </section>
-
-            <!-- Categorías rápidas -->
-            <div class="container" style="margin-top: -30px; position: relative; z-index: 2;">
-                <div class="categories" style="justify-content: center;">
-                    <span class="category-chip active">Todos</span>
-                    <span class="category-chip">Playeras</span>
-                    <span class="category-chip">Termos</span>
-                    <span class="category-chip">Tazas</span>
-                    <span class="category-chip">Rompecabezas</span>
-                    <span class="category-chip">Gorras</span>
-                    <span class="category-chip">Mochilas</span>
+                <div class="hero-stats">
+                    <div class="stat-item"><h4>+8,500</h4><span>productos entregados</span></div>
+                    <div class="stat-item"><h4>3 años</h4><span>garantía en impresión</span></div>
+                    <div class="stat-item"><h4>24h</h4><span>respuesta ejecutiva</span></div>
                 </div>
             </div>
-
-            <section id="productos" class="section">
-                <div class="container">
-
-                    <div class="section-header">
-                        <h2>Productos más populares</h2>
-                        <p class="text-secondary">Los favoritos de nuestros clientes para personalizar</p>
-                    </div>
-
-
-
-
-                    <div class="grid grid-4">
-
-                        <!-- Producto 1 - Taza Blanca -->
-                        <div class="mui-card">
-                            <div style="position: relative; overflow: hidden;">
-                                <span class="badge"><span class="chip chip-hot">MÁS VENDIDO</span></span>
-                                <img src="https://m.media-amazon.com/images/I/61WB+6ppLgL._AC_SX679_.jpg"
-                                    alt="Taza blanca personalizada" class="card-media">
-                            </div>
-
-                            <div class="card-content">
-                                <h3>Taza Blanca Personalizada</h3>
-                                <p class="text-secondary">Taza de cerámica blanca ideal para sublimación con tu diseño,
-                                    foto o logo.</p>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Capacidad 11 oz</span>
-                                </div>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Impresión full color</span>
-                                </div>
-
-                                <div class="price">$100 <small>MXN</small></div>
-                            </div>
-
-                            <div class="card-actions">
-                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-                            </div>
-                        </div>
-
-                        <!-- Producto 2 - Taza Interior Color -->
-                        <div class="mui-card">
-                            <div style="position: relative; overflow: hidden;">
-                                <span class="badge"><span class="chip chip-new">POPULAR</span></span>
-                                <img src="https://fotoideas.mx/cdn/shop/files/FOTOTAZAS.png?v=1745524473"
-                                    alt="Taza interior color personalizada" class="card-media">
-                            </div>
-
-                            <div class="card-content">
-                                <h3>Taza Interior de Color</h3>
-                                <p class="text-secondary">Taza blanca con interior y asa de color. Perfecta para regalos
-                                    personalizados.</p>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Interior rojo, azul o negro</span>
-                                </div>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Sublimación de alta calidad</span>
-                                </div>
-
-                                <div class="price">$100 <small>MXN</small></div>
-                            </div>
-
-                            <div class="card-actions">
-                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-                            </div>
-                        </div>
-
-                        <!-- Producto 3 - Taza Mágica -->
-                        <div class="mui-card">
-                            <div style="position: relative; overflow: hidden;">
-                                <span class="badge"><span class="chip chip-hot">SORPRESA</span></span>
-                                <img src="https://m.media-amazon.com/images/I/61vRjFmN5sL._AC_SL1500_.jpg"
-                                    alt="Taza mágica personalizada" class="card-media">
-                            </div>
-
-                            <div class="card-content">
-                                <h3>Taza Mágica</h3>
-                                <p class="text-secondary">Taza que cambia de color al agregar líquido caliente revelando
-                                    tu diseño.</p>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Efecto térmico</span>
-                                </div>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Diseño oculto sorpresa</span>
-                                </div>
-
-                                <div class="price">$120 <small>MXN</small></div>
-                            </div>
-
-                            <div class="card-actions">
-                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-                            </div>
-                        </div>
-
-
-                        <!-- Producto 4 - Playera Infantil -->
-                        <div class="mui-card">
-                            <div style="position: relative; overflow: hidden;">
-                                <span class="badge"><span class="chip chip-new">PERSONALIZADO</span></span>
-                                <img src="https://www.tenvinilo.mx/webp/t-shirts/large/camiseta-ninos-futbol-personalizado-45384.webp"
-                                    alt="Playera infantil personalizada" class="card-media">
-                            </div>
-
-                            <div class="card-content">
-                                <h3>Playera Infantil Personalizada</h3>
-                                <p class="text-secondary">Playera infantil personalizada con impresión DTF de alta
-                                    calidad.</p>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Colores negro y varios colores</span>
-                                </div>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Impresión DTF duradera</span>
-                                </div>
-
-                                <div class="feature-item">
-                                    <span class="material-icons feature-icon">check_circle</span>
-                                    <span>Tallas infantiles disponibles</span>
-                                </div>
-
-                                <div class="price">$200 <small>MXN</small></div>
-                            </div>
-
-                            <div class="card-actions">
-                                <button class="btn btn-outline" style="flex: 1;">Ver detalles</button>
-                                <button class="btn btn-primary" style="flex: 1;">Cotizar</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Ver más productos -->
-                    <div style="text-align: center; margin-top: 40px;">
-                        <a href="todos-productos.html" class="btn btn-outline btn-large">Ver todos los productos</a>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Cómo personalizar (proceso simple) -->
-            <section id="personalizar" class="section" style="background: #f0f4f8;">
-                <div class="container">
-                    <div class="section-header">
-                        <h2>Personalizar es muy fácil</h2>
-                        <p class="text-secondary">3 pasos simples para tener tus productos únicos</p>
-                    </div>
-
-                    <div class="grid grid-3" style="gap: 30px;">
-                        <div class="mui-card" style="text-align: center; padding: 40px 20px;">
-                            <div
-                                style="width: 80px; height: 80px; border-radius: 40px; background: #222535; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">
-                                1</div>
-                            <h3 style="margin-bottom: 12px;">Elige tu producto</h3>
-                            <p class="text-secondary">Selecciona entre nuestra variedad de productos de alta calidad</p>
-                        </div>
-
-                        <div class="mui-card" style="text-align: center; padding: 40px 20px;">
-                            <div
-                                style="width: 80px; height: 80px; border-radius: 40px; background: #222535; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">
-                                2</div>
-                            <h3 style="margin-bottom: 12px;">Envía tu diseño</h3>
-                            <p class="text-secondary">Comparte tu logo, imagen o idea. Si no tienes, nosotros lo
-                                diseñamos</p>
-                        </div>
-
-                        <div class="mui-card" style="text-align: center; padding: 40px 20px;">
-                            <div
-                                style="width: 80px; height: 80px; border-radius: 40px; background: #222535; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; font-weight: 700;">
-                                3</div>
-                            <h3 style="margin-bottom: 12px;">Recibe tu pedido</h3>
-                            <p class="text-secondary">Producimos y enviamos a toda la república en 5-7 días</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Servicios complementarios (soporte y desarrollo) -->
-            <section id="servicios" class="section">
-                <div class="container">
-                    <div class="section-header">
-                        <h2>También ofrecemos</h2>
-                        <p class="text-secondary">Servicios profesionales adicionales para tu negocio</p>
-                    </div>
-
-                    <div class="grid grid-2" style="gap: 24px; max-width: 800px; margin: 0 auto;">
-                        <!-- Soporte Técnico -->
-                        <a href="#" class="service-mini-card">
-                            <div class="service-icon-small">
-                                <span class="material-icons">computer</span>
-                            </div>
-                            <div class="service-content">
-                                <h4>Soporte Técnico</h4>
-                                <p>Reparación de equipos, mantenimiento y asesoría IT</p>
-                            </div>
-                            <span class="material-icons" style="color: #007FFF; margin-left: auto;">arrow_forward</span>
-                        </a>
-
-                        <!-- Desarrollo Web -->
-                     <a href="desarrollo-web.html" class="service-mini-card">
-                            <div class="service-icon-small">
-                                <span class="material-icons">code</span>
-                            </div>
-                            <div class="service-content">
-                                <h4>Desarrollo Web</h4>
-                                <p>Sitios web, tiendas online y aplicaciones a medida</p>
-                            </div>
-                            <span class="material-icons" style="color: #007FFF; margin-left: auto;">arrow_forward</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-
-            <style>
-                .contacto-section {
-
-
-                    background: linear-gradient(135deg, #1C1E2A 0%, #2D3349 100%);
-                    padding: 80px 20px;
-                    color: white;
-                }
-
-                .contacto-container {
-                    max-width: 900px;
-                    margin: auto;
-                    text-align: center;
-                }
-
-                .contacto-header h2 {
-                    font-size: 2.2rem;
-                    margin-bottom: 10px;
-                }
-
-                .contacto-header p {
-                    opacity: .9;
-                    margin-bottom: 40px;
-                    font-size: 1.1rem;
-                }
-
-                .contacto-card {
-                    background: rgba(255, 255, 255, 0.15);
-                    backdrop-filter: blur(10px);
-                    padding: 35px;
-                    border-radius: 16px;
-                    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
-                }
-
-                .contacto-card form {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 18px;
-                }
-
-                .grid-2 {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 15px;
-                }
-
-                .contacto-card input,
-                .contacto-card select,
-                .contacto-card textarea {
-                    width: 100%;
-                    padding: 14px;
-                    border: none;
-                    border-radius: 10px;
-                    font-size: 15px;
-                    outline: none;
-                }
-
-                .contacto-card textarea {
-                    min-height: 120px;
-                    resize: none;
-                }
-
-                .contacto-card input:focus,
-                .contacto-card select:focus,
-                .contacto-card textarea:focus {
-                    box-shadow: 0 0 0 2px #007FFF;
-                }
-
-                .btn-enviar {
-                    background: #007FFF;
-                    color: white;
-                    border: none;
-                    padding: 14px;
-                    border-radius: 10px;
-                    font-size: 16px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: .3s;
-                }
-
-                .btn-enviar:hover {
-                    background: linear-gradient(135deg, #1C1E2A 0%, #2D3349 100%);
-
-                    transform: translateY(-2px);
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-                }
-
-                /* responsive */
-
-                @media(max-width:700px) {
-                    .grid-2 {
-                        grid-template-columns: 1fr;
-                    }
-                }
-            </style>
-            <!-- Contacto rápido -->
-            <section id="contacto" class="section contacto-section">
-                <div class="container contacto-container">
-
-                    <div class="contacto-header">
-                        <h2>¿Listo para personalizar?</h2>
-                        <p>Cuéntanos tu idea y te enviaremos una cotización en máximo <b>2 horas</b></p>
-                    </div>
-
-                    <div class="contacto-card">
-                        <form>
-
-                            <div class="grid-2">
-                                <input type="text" placeholder="Nombre" required>
-                                <input type="email" placeholder="Correo electrónico" required>
-                            </div>
-
-                            <select>
-                                <option>Producto de interés</option>
-                                <option>Playera personalizada</option>
-                                <option>Termo personalizado</option>
-                                <option>Taza personalizada</option>
-                                <option>Rompecabezas personalizado</option>
-                                <option>Otro producto</option>
-                                <option>Soporte Técnico</option>
-                                <option>Desarrollo Web</option>
-                            </select>
-
-                            <textarea placeholder="Cuéntanos tu idea o qué necesitas..."></textarea>
-
-                            <button type="submit" class="btn-enviar">
-                                Enviar mensaje
-                            </button>
-
-                        </form>
-                    </div>
-
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div>
-                        <h3 style="color: rgb(235, 227, 227); margin-bottom: 16px;">✨Dots Color</h3>
-                        <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">Damos vida a tus ideas en
-                            productos de alta calidad. Personalización profesional sin límites.</p>
-                    </div>
-
-                    <div>
-                        <h4 style="color: white; margin-bottom: 20px;">Productos</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Playeras</a></li>
-                            <li><a href="#">Termos</a></li>
-                            <li><a href="#">Tazas</a></li>
-                            <li><a href="#">Rompecabezas</a></li>
-                            <li><a href="#">Gorras</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 style="color: white; margin-bottom: 20px;">Servicios</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Personalización</a></li>
-                            <li><a href="#">Diseño gráfico</a></li>
-                            <li><a href="#">Soporte técnico</a></li>
-                            <li><a href="#">Desarrollo web</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 style="color: white; margin-bottom: 20px;">Contacto</h4>
-                        <ul class="footer-links">
-                            <li>📞 844 692 93 85 </li>
-                            <li>✉️ ventas@dotscolor.com </li>
-                            <li>📍 Saltillo, Coahuila, Mexico</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="copyright">
-                    <p>&copy; 2026 Dotscolor. Todos los derechos reservados.</p>
-                </div>
+            <div class="hero-image">
+                <img src="https://scontent.fslw1-1.fna.fbcdn.net/v/t39.30808-6/571038510_4214478678780700_4986668978705025461_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHDnUNnbiSuTSX4kK1Xl6QYvDcbxh2XRUK8NxvGHZdFQpQJ1RO0suM8wwETIgUiEmniDUADiHaSkNYStwrw0B-U&_nc_ohc=0J6H9sB2xlQQ7kNvwGy_rk4&_nc_oc=AdkBDoAiLm840fIw_gRBE5retgG1VEr6icNOrbGbtw1KDUsLS6euurR8a6QWQNQpFfUSx5kXbSjmxGS3vB8H-rwQ&_nc_zt=23&_nc_ht=scontent.fslw1-1.fna&_nc_gid=p75h5YjdbYaYmVYUMF-83A&_nc_ss=8&oh=00_AfztQkatJazB5F-r8x1Ze2ACWc-cCkTCsm8B3QLUffB8Bw&oe=69B6596E" alt="muestra productos personalizados">
             </div>
-        </footer>
+        </div>
+    </section>
+
+    <!-- Filtros de categoria (interacción visual) -->
+    <div class="container" style="margin-top: -36px; margin-bottom: 40px;">
+        <div class="filter-group" id="categoryFilters">
+            <span class="filter-chip active" data-filter="all">Todos</span>
+            <span class="filter-chip" data-filter="playeras">Playeras</span>
+            <span class="filter-chip" data-filter="termos">Termos</span>
+            <span class="filter-chip" data-filter="tazas">Tazas</span>
+            <span class="filter-chip" data-filter="rompecabezas">Rompecabezas</span>
+            <span class="filter-chip" data-filter="gorras">Gorras</span>
+        </div>
     </div>
 
-    <!-- Scripts -->
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+    <!-- productos destacados (cards premium) -->
+    <section id="productos" style="padding: 30px 0 70px;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <h2 style="font-size: 2.4rem; font-weight: 700;">Productos exclusivos</h2>
+                <p style="color: #4F5B6E; max-width: 600px; margin: 12px auto 0;">Alta definición, materiales de primera calidad y acabados profesionales</p>
+            </div>
+            <div class="grid-prod" id="productsGrid">
+                <!-- items dinámicos pero también estáticos con data-category para filtro -->
+                <div class="card-premium" data-category="tazas">
+                    <div style="position: relative; overflow: hidden;">
+                        <span class="badge-premium">⭐ Más vendido</span>
+                        <img src="https://m.media-amazon.com/images/I/61WB+6ppLgL._AC_SX679_.jpg" alt="Taza profesional" class="product-img">
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3 style="font-size: 1.35rem;">Taza Premium 11oz</h3>
+                        <p style="color: #5A6B87; margin: 8px 0; font-size: 0.85rem;">Cerámica blanca · sublimación full color</p>
+                        <div style="margin: 12px 0; font-weight: 700; font-size: 1.4rem;">$105 MXN</div>
+                        <button class="btn btn-secondary" style="width:100%; justify-content: center;" onclick="openWhatsAppCotizar('Taza Premium 11oz')">Solicitar cotización</button>
+                    </div>
+                </div>
+                <div class="card-premium" data-category="tazas">
+                    <div style="position: relative; overflow: hidden;">
+                        <span class="badge-premium">🎨 Interior color</span>
+                        <img src="https://fotoideas.mx/cdn/shop/files/FOTOTAZAS.png?v=1745524473" alt="Taza interior color" class="product-img">
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3 style="font-size: 1.35rem;">Taza Interior Color</h3>
+                        <p style="color: #5A6B87; margin: 8px 0;">Asa e interior pigmentado · elegante</p>
+                        <div style="margin: 12px 0; font-weight: 700; font-size: 1.4rem;">$115 MXN</div>
+                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Taza Interior Color')">Cotizar</button>
+                    </div>
+                </div>
+                <div class="card-premium" data-category="tazas">
+                    <div style="position: relative;"><span class="badge-premium">✨ Mágica</span>
+                        <img src="https://m.media-amazon.com/images/I/61vRjFmN5sL._AC_SL1500_.jpg" alt="Taza térmica" class="product-img">
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3>Taza Mágica térmica</h3>
+                        <p style="color: #5A6B87;">Revela diseño con calor · regalo sorpresa</p>
+                        <div class="price" style="font-size:1.4rem; font-weight:700;">$135 MXN</div>
+                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Taza Mágica')">Cotizar</button>
+                    </div>
+                </div>
+                <div class="card-premium" data-category="playeras">
+                    <div><span class="badge-premium">👕 DTF Pro</span>
+                        <img src="https://www.tenvinilo.mx/webp/t-shirts/large/camiseta-ninos-futbol-personalizado-45384.webp" alt="Playera infantil DTF" class="product-img">
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3>Playera Infantil DTF</h3>
+                        <p style="color: #5A6B87;">Alta durabilidad, cores vivos · tallas 2-12</p>
+                        <div style="font-weight:700; font-size:1.4rem;">$195 MXN</div>
+                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Playera Infantil Personalizada')">Cotizar</button>
+                    </div>
+                </div>
+                <!-- Productos extra adicional para dar seriedad -->
+                <div class="card-premium" data-category="termos">
+                    <div><span class="badge-premium">🔥 Acero inox</span>
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_2X_933190-MLM54271416656_032023-F.webp" alt="Termo profesional" class="product-img">
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3>Termo Acero 500ml</h3>
+                        <p style="color: #5A6B87;">Impresión 360°, conserva temperatura</p>
+                        <div style="font-size:1.4rem; font-weight:700;">$210 MXN</div>
+                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Termo acero inoxidable')">Cotizar</button>
+                    </div>
+                </div>
+                <div class="card-premium" data-category="rompecabezas">
+                    <div><span class="badge-premium">🧩 Edición especial</span>
+                        <img src="https://m.media-amazon.com/images/I/71WzLhysC5L._AC_SX679_.jpg" alt="Rompecabezas personal" class="product-img">
+                    </div>
+                    <div style="padding: 24px;">
+                        <h3>Rompecabezas 100pzas</h3>
+                        <p style="color: #5A6B87;">Foto personal, estuche premium</p>
+                        <div style="font-weight:700; font-size:1.4rem;">$250 MXN</div>
+                        <button class="btn btn-secondary" style="width:100%;" onclick="openWhatsAppCotizar('Rompecabezas personalizado')">Cotizar</button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 45px;">
+                <a href="todos-productos.html" class="btn btn-primary" style="background: #1F2F4F;">Ver inventario completo →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso confiable (3 pasos corporativos) -->
+    <section id="proceso" style="background: #F9FCFE; padding: 70px 0;">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
+                <h2 style="font-weight:700;">Metodología de trabajo</h2>
+                <p style="color:#475569;">Integramos diseño, manufactura y logística para entregar piezas impecables</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 32px;">
+                <div style="text-align: center;"><div class="step-icon" style="margin:0 auto 24px;">1</div><h3>Brief & selección</h3><p>Elegís el producto, nos compartís tu arte o idea, te asesoramos.</p></div>
+                <div style="text-align: center;"><div class="step-icon" style="margin:0 auto 24px;">2</div><h3>Previsualización + aprobación</h3><p>Enviamos prueba digital 100% exacta antes de producción.</p></div>
+                <div style="text-align: center;"><div class="step-icon" style="margin:0 auto 24px;">3</div><h3>Manufactura y envío tracking</h3><p>Producimos con sublimación/DTF y entregamos en 4-7 días hábiles.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios complementarios -->
+    <section id="servicios" style="padding: 70px 0;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;"><h2>Soluciones integrales para empresas</h2><p>Más allá de la personalización, potenciamos tu negocio digital</p></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; margin: 0 auto;">
+                <a href="soporte-tecnico.html" class="service-card-h">
+                    <span class="material-symbols-rounded" style="font-size: 36px; color: #1C3D5A;">computer</span>
+                    <div><strong style="font-size:1.1rem;">Soporte Técnico Especializado</strong><p>Infraestructura IT, mantenimiento y redes</p></div>
+                </a>
+                <a href="desarrollo-web.html" class="service-card-h">
+                    <span class="material-symbols-rounded" style="font-size: 36px; color: #1C3D5A;">code</span>
+                    <div><strong>Desarrollo Web & E‑commerce</strong><p>Tiendas online, landing pages y sistemas a medida</p></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto de alta conversion -->
+    <section id="contacto" style="padding: 10px 0 80px;">
+        <div class="container">
+            <div class="contact-premium">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <span class="hero-badge" style="background:#E9F0F9;">Asesoría inmediata</span>
+                        <h2 style="font-size: 1.9rem; margin: 20px 0 12px;">¿Necesitas cotizar unidades o un proyecto corporativo?</h2>
+                        <p style="color:#32506e;">Completa el formulario y un asesor especialista te contactará en menos de 2 horas hábiles.</p>
+                        <div style="margin-top: 32px;">
+                            <div style="display: flex; gap: 16px; align-items: center;"><span class="material-symbols-rounded">verified</span> Sin mínimo de piezas</div>
+                            <div style="display: flex; gap: 16px; align-items: center; margin-top: 12px;"><span class="material-symbols-rounded">palette</span> Diseño profesional incluido</div>
+                        </div>
+                    </div>
+                    <div>
+                        <form id="leadForm" action="#" method="post">
+                            <div style="display: grid; gap: 16px;">
+                                <input type="text" placeholder="Nombre completo" class="form-control-premium" required id="nombreForm">
+                                <input type="email" placeholder="Correo empresarial" class="form-control-premium" required id="emailForm">
+                                <select class="form-control-premium" id="productoInteres">
+                                    <option>Producto de interés</option><option>Playera personalizada</option><option>Termo / Taza</option><option>Rompecabezas</option><option>Lotes para empresa</option><option>Soporte técnico / desarrollo web</option>
+                                </select>
+                                <textarea rows="3" placeholder="Detalla tu idea, cantidad o requerimiento técnico..." class="form-control-premium" id="mensajeForm"></textarea>
+                                <button type="submit" class="btn btn-primary" style="justify-content: center; background:#0A2540;">Enviar solicitud →</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer-dark" style="padding: 48px 0 32px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 48px;">
+            <div><h4 style="color:white; margin-bottom:20px;">Dots Color</h4><p style="color:#94A3B8;">Fabricación digital y branding personal. Calidad corporativa, resultados impecables.</p></div>
+            <div><h4 style="color:white;">Productos</h4><ul style="list-style:none; margin-top:12px;"><li>Playeras DTF</li><li>Tazas sublimación</li><li>Termos y regalos</li><li>Rompecabezas</li></ul></div>
+            <div><h4 style="color:white;">Enlaces</h4><ul style="list-style:none; margin-top:12px;"><li><a href="#" style="color:#CBD5E1; text-decoration:none;">Facturación</a></li><li><a href="#" style="color:#CBD5E1;">Políticas</a></li><li><a href="soporte-tecnico.html" style="color:#CBD5E1;">Soporte técnico</a></li></ul></div>
+            <div><h4 style="color:white;">Contacto directo</h4><p style="margin-top:12px;">📞 844 692 93 85</p><p>✉️ ventas@dotscolor.com</p><p>📍 Saltillo, Coahuila · México</p></div>
+        </div>
+        <div style="border-top: 1px solid #2D3A5A; margin-top: 40px; padding-top: 28px; text-align: center; font-size: 0.85rem;">© 2026 DOTS COLOR — Personalización Premium & Soluciones Tecnológicas</div>
+    </div>
+</footer>
+
+<!-- botón flotante WhatsApp corporativo -->
+<a href="https://wa.me/5218446929385?text=Hola%2C%20requiero%20informaci%C3%B3n%20profesional%20sobre%20productos%20personalizados" class="whatsapp-float-clean" target="_blank">
+    <span class="material-symbols-rounded" style="font-size: 24px;">chat</span> Cotizar por WhatsApp
+</a>
+
+<script>
+    // filtro de categorías (MUY PRO)
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const products = document.querySelectorAll('.card-premium');
+    function filterProducts(category) {
+        products.forEach(prod => {
+            if(category === 'all' || prod.getAttribute('data-category') === category) {
+                prod.style.display = '';
+            } else {
+                prod.style.display = 'none';
+            }
+        });
+    }
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            filterChips.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            const filterVal = this.getAttribute('data-filter');
+            filterProducts(filterVal);
+        });
+    });
+    // funcion cotizar por WhatsApp desde botones dinamicos
+    window.openWhatsAppCotizar = (productoNombre) => {
+        const msg = `Hola equipo de Dots Color, quisiera cotizar el producto: ${productoNombre} para uso profesional. ¿Podrían brindarme más información?`;
+        const url = `https://wa.me/5218446929385?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+    };
+    // manejo formulario contacto básico (prevención redirect demo)
+    const leadForm = document.getElementById('leadForm');
+    if(leadForm) {
+        leadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombreForm')?.value || '';
+            const email = document.getElementById('emailForm')?.value || '';
+            if(nombre && email) {
+                alert(`✅ Recibido ${nombre}, en breve un asesor Dots Color dará seguimiento a su solicitud.`);
+                leadForm.reset();
+            } else {
+                alert('Por favor complete nombre y correo para recibir asesoría.');
+            }
+        });
+    }
+    // smooth scroll elegante
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href === "#" || href === "") return;
+            const targetEl = document.querySelector(href);
+            if(targetEl) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
-
-        // Category chips
-        document.querySelectorAll('.category-chip').forEach(chip => {
-            chip.addEventListener('click', function () {
-                document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
-
-    <style>
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            background: #25D366;
-            color: white;
-
-            padding: 14px 18px;
-            border-radius: 50px;
-
-            font-weight: 600;
-            text-decoration: none;
-
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-
-            z-index: 9999;
-
-            transition: all .3s ease;
-            animation: whatsappPulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.08);
-            background: #20b954;
-        }
-
-        .whatsapp-text {
-            font-size: 15px;
-        }
-
-        /* animación de atención */
-
-        @keyframes whatsappPulse {
-
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-
-        }
-    </style>
-
-
-
-    <a href="https://wa.me/5218446929385?text=Hola,%20quiero%20información%20sobre%20sus%20productos%20personalizados"
-        class="whatsapp-float" target="_blank">
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
-            <path
-                d="M20.52 3.48A11.91 11.91 0 0012.05 0C5.48 0 .16 5.32.16 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.29-1.64a11.88 11.88 0 005.76 1.47h.01c6.57 0 11.9-5.32 11.9-11.9a11.86 11.86 0 00-3.44-8.45zM12.05 21.4c-1.78 0-3.53-.48-5.06-1.39l-.36-.21-3.73.97 1-3.64-.23-.37a9.42 9.42 0 01-1.45-5.06c0-5.23 4.25-9.48 9.49-9.48 2.53 0 4.9.98 6.69 2.77a9.41 9.41 0 012.78 6.71c0 5.23-4.25 9.49-9.48 9.49zm5.2-7.08c-.28-.14-1.67-.82-1.93-.91-.26-.1-.45-.14-.64.14-.19.28-.73.91-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.19-.44-2.27-1.4-.84-.75-1.41-1.67-1.58-1.95-.17-.28-.02-.43.12-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.1-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.11-.23-.55-.46-.47-.64-.48h-.55c-.19 0-.49.07-.75.35-.26.28-.99.97-.99 2.36s1.01 2.73 1.15 2.92c.14.19 1.98 3.02 4.8 4.24.67.29 1.19.46 1.6.59.67.21 1.28.18 1.76.11.54-.08 1.67-.68 1.9-1.34.23-.66.23-1.22.16-1.34-.07-.12-.26-.19-.54-.33z" />
-        </svg>
-
-        <span class="whatsapp-text">Cotizar</span>
-
-    </a>
+    });
+</script>
 </body>
-
 </html>
