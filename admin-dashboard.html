@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,6 +28,7 @@
             color: white;
             padding: 20px;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
         }
 
         .logo-area {
@@ -98,6 +98,11 @@
             color: white;
         }
 
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
         .card {
             background: white;
             border-radius: 15px;
@@ -129,7 +134,8 @@
             width: 100%;
             background: white;
             border-radius: 15px;
-            overflow: hidden;
+            overflow-x: auto;
+            display: block;
         }
 
         th, td {
@@ -160,9 +166,9 @@
             background: white;
             padding: 30px;
             border-radius: 20px;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
         }
 
@@ -171,6 +177,41 @@
             height: 60px;
             object-fit: cover;
             border-radius: 8px;
+        }
+
+        .image-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 200px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .upload-progress {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
         }
 
         @media (max-width: 768px) {
@@ -227,7 +268,7 @@
         <!-- Sección Productos -->
         <div id="productosSection">
             <div class="card">
-                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
                     <input type="text" id="searchProducto" placeholder="Buscar producto..." style="max-width: 300px;" onkeyup="filtrarProductos()">
                     <select id="filtroCategoria" onchange="filtrarProductos()">
                         <option value="">Todas las categorías</option>
@@ -235,16 +276,17 @@
                         <option value="playeras">Playeras</option>
                         <option value="termos">Termos</option>
                         <option value="rompecabezas">Rompecabezas</option>
+                        <option value="otros">Otros</option>
                     </select>
                 </div>
-                <div id="productosList"></div>
+                <div id="productosList" style="overflow-x: auto;"></div>
             </div>
         </div>
 
         <!-- Sección Contactos -->
         <div id="contactosSection" style="display: none;">
             <div class="card">
-                <div id="contactosList"></div>
+                <div id="contactosList" style="overflow-x: auto;"></div>
             </div>
         </div>
 
@@ -273,6 +315,7 @@
             <h3 id="modalTitle">Agregar Producto</h3>
             <form id="productoForm">
                 <input type="hidden" id="productoId">
+                <input type="hidden" id="imagenActual">
                 
                 <div class="form-group">
                     <label>Nombre del producto *</label>
@@ -296,9 +339,25 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>URL de la imagen</label>
-                    <input type="url" id="imagen" placeholder="https://ejemplo.com/imagen.jpg">
-                    <small style="color: #666;">Deja vacío para usar imagen por defecto</small>
+                    <label>Imagen del producto</label>
+                    <input type="file" id="imagenFile" accept="image/*" onchange="previewImage(this)">
+                    <small style="color: #666;">Formatos: JPG, PNG, GIF. Máx 5MB</small>
+                    
+                    <div class="image-preview" id="imagePreview">
+                        <img id="previewImg" src="" style="display: none;">
+                    </div>
+                    
+                    <div class="upload-progress" id="uploadProgress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill">0%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>URL de imagen externa (opcional)</label>
+                    <input type="url" id="imagenUrl" placeholder="https://ejemplo.com/imagen.jpg">
+                    <small style="color: #666;">Si subes imagen, esto se ignora</small>
                 </div>
                 
                 <div class="form-group">
@@ -312,7 +371,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Orden</label>
+                    <label>Orden de visualización</label>
                     <input type="number" id="orden" value="1">
                 </div>
                 
@@ -326,11 +385,12 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
         
-        // 🔥 CONFIGURACIÓN DE FIREBASE (MISMA QUE EN LOGIN)
-const firebaseConfig = {
+        // 🔥 CONFIGURACIÓN DE FIREBASE (REEMPLAZA CON TUS DATOS)
+     const firebaseConfig = {
   apiKey: "AIzaSyBUNwOp9IDlusl_A1868GXsCMiFoj6Ao1Q",
   authDomain: "gpsito.firebaseapp.com",
   projectId: "gpsito",
@@ -339,11 +399,15 @@ const firebaseConfig = {
   appId: "1:84920052709:web:ba764f7c0ca62982115d0c",
   measurementId: "G-C3MNTN0F0H"
 };
+
+        
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
+        const storage = getStorage(app);
         
         let productosGlobal = [];
+        let archivoSubir = null;
         
         // Verificar autenticación
         onAuthStateChanged(auth, (user) => {
@@ -356,7 +420,56 @@ const firebaseConfig = {
             }
         });
         
-        // Cargar productos
+        // Función para subir imagen a Storage
+        async function subirImagenStorage(file, productoId) {
+            return new Promise((resolve, reject) => {
+                const progressDiv = document.getElementById('uploadProgress');
+                const progressFill = document.getElementById('progressFill');
+                
+                progressDiv.style.display = 'block';
+                
+                // Crear nombre único para la imagen
+                const extension = file.name.split('.').pop();
+                const fileName = `productos/${productoId}_${Date.now()}.${extension}`;
+                const storageRef = ref(storage, fileName);
+                
+                const uploadTask = uploadBytesResumable(storageRef, file);
+                
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        progressFill.style.width = `${progress}%`;
+                        progressFill.textContent = `${Math.round(progress)}%`;
+                    },
+                    (error) => {
+                        console.error("Error en subida:", error);
+                        progressDiv.style.display = 'none';
+                        reject(error);
+                    },
+                    async () => {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        progressDiv.style.display = 'none';
+                        progressFill.style.width = '0%';
+                        resolve(downloadURL);
+                    }
+                );
+            });
+        }
+        
+        // Función para eliminar imagen de Storage
+        async function eliminarImagenStorage(urlImagen) {
+            if (!urlImagen || !urlImagen.includes('firebasestorage')) return;
+            
+            try {
+                const imageRef = ref(storage, urlImagen);
+                await deleteObject(imageRef);
+                console.log("Imagen eliminada de Storage");
+            } catch (error) {
+                console.error("Error eliminando imagen:", error);
+            }
+        }
+        
+        // Cargar productos desde Firestore
         async function cargarProductos() {
             try {
                 const q = query(collection(db, "productos"), orderBy("orden", "asc"));
@@ -380,13 +493,9 @@ const firebaseConfig = {
                 return;
             }
             
-            let html = `
-                <table>
-                    <thead>
-                        <tr><th>Imagen</th><th>Producto</th><th>Categoría</th><th>Precio</th><th>Badge</th><th>Acciones</th></tr>
-                    </thead>
-                    <tbody>
-            `;
+            let html = `<table><thead><tr>
+                <th>Imagen</th><th>Producto</th><th>Categoría</th><th>Precio</th><th>Badge</th><th>Acciones</th>
+            </tr></thead><tbody>`;
             
             productos.forEach(prod => {
                 html += `
@@ -408,31 +517,68 @@ const firebaseConfig = {
             container.innerHTML = html;
         }
         
-        // Guardar producto
+        // Guardar producto (con imagen en Storage)
         window.guardarProducto = async function(e) {
             e.preventDefault();
+            
+            const productoId = document.getElementById('productoId').value;
+            const archivo = document.getElementById('imagenFile').files[0];
+            const imagenUrl = document.getElementById('imagenUrl').value;
+            const imagenActual = document.getElementById('imagenActual').value;
+            
+            let urlImagenFinal = imagenActual;
+            
+            // Si hay archivo nuevo, subir a Storage
+            if (archivo) {
+                try {
+                    const tempId = productoId || `temp_${Date.now()}`;
+                    urlImagenFinal = await subirImagenStorage(archivo, tempId);
+                } catch (error) {
+                    alert('❌ Error al subir la imagen. Intenta de nuevo.');
+                    return;
+                }
+            } else if (imagenUrl && !productoId) {
+                // Si es producto nuevo y tiene URL externa
+                urlImagenFinal = imagenUrl;
+            } else if (!urlImagenFinal && !archivo && !imagenUrl) {
+                // Imagen por defecto
+                urlImagenFinal = 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=300';
+            }
             
             const productoData = {
                 nombre: document.getElementById('nombre').value,
                 categoria: document.getElementById('categoria').value,
                 precio: parseInt(document.getElementById('precio').value),
-                imagen: document.getElementById('imagen').value || 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=300',
+                imagen: urlImagenFinal,
                 badge: document.getElementById('badge').value || 'Destacado',
                 descripcion: document.getElementById('descripcion').value,
                 orden: parseInt(document.getElementById('orden').value),
-                activo: true
+                activo: true,
+                actualizado: new Date().toISOString()
             };
-            
-            const productoId = document.getElementById('productoId').value;
             
             try {
                 if (productoId) {
-                    // Actualizar
+                    // Actualizar producto existente
+                    const productoAnterior = productosGlobal.find(p => p.id === productoId);
+                    
+                    // Si se subió imagen nueva y la anterior era de Storage, eliminarla
+                    if (archivo && productoAnterior?.imagen && productoAnterior.imagen.includes('firebasestorage')) {
+                        await eliminarImagenStorage(productoAnterior.imagen);
+                    }
+                    
                     await updateDoc(doc(db, "productos", productoId), productoData);
                     alert('✅ Producto actualizado correctamente');
                 } else {
-                    // Crear nuevo
-                    await addDoc(collection(db, "productos"), productoData);
+                    // Crear nuevo producto
+                    const docRef = await addDoc(collection(db, "productos"), productoData);
+                    
+                    // Si se subió imagen y usamos ID temporal, renombrar la imagen
+                    if (archivo && urlImagenFinal) {
+                        // La imagen ya está subida con ID temporal, actualizamos referencia
+                        console.log("Producto creado con ID:", docRef.id);
+                    }
+                    
                     alert('✅ Producto agregado correctamente');
                 }
                 
@@ -444,33 +590,69 @@ const firebaseConfig = {
             }
         };
         
+        // Vista previa de imagen
+        window.previewImage = function(input) {
+            const preview = document.getElementById('previewImg');
+            const urlInput = document.getElementById('imagenUrl');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    urlInput.value = ''; // Limpiar URL si se sube archivo
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+        
         // Editar producto
         window.editarProducto = function(id) {
             const producto = productosGlobal.find(p => p.id === id);
             if (producto) {
                 document.getElementById('productoId').value = producto.id;
+                document.getElementById('imagenActual').value = producto.imagen || '';
                 document.getElementById('nombre').value = producto.nombre;
                 document.getElementById('categoria').value = producto.categoria;
                 document.getElementById('precio').value = producto.precio;
-                document.getElementById('imagen').value = producto.imagen || '';
                 document.getElementById('badge').value = producto.badge || '';
                 document.getElementById('descripcion').value = producto.descripcion || '';
                 document.getElementById('orden').value = producto.orden || 1;
+                document.getElementById('imagenUrl').value = '';
+                document.getElementById('imagenFile').value = '';
+                
+                // Mostrar vista previa de imagen actual
+                const preview = document.getElementById('previewImg');
+                if (producto.imagen) {
+                    preview.src = producto.imagen;
+                    preview.style.display = 'block';
+                } else {
+                    preview.style.display = 'none';
+                }
+                
                 document.getElementById('modalTitle').innerText = 'Editar Producto';
                 document.getElementById('productoModal').style.display = 'flex';
             }
         };
         
-        // Eliminar producto
+        // Eliminar producto (con su imagen de Storage)
         window.eliminarProducto = async function(id) {
             if (confirm('¿Estás seguro de eliminar este producto?')) {
+                const producto = productosGlobal.find(p => p.id === id);
+                
                 try {
+                    // Eliminar imagen de Storage si existe
+                    if (producto?.imagen && producto.imagen.includes('firebasestorage')) {
+                        await eliminarImagenStorage(producto.imagen);
+                    }
+                    
+                    // Eliminar documento de Firestore
                     await deleteDoc(doc(db, "productos", id));
-                    alert('✅ Producto eliminado');
+                    alert('✅ Producto eliminado correctamente');
                     cargarProductos();
                 } catch (error) {
                     console.error("Error eliminando:", error);
-                    alert('❌ Error al eliminar');
+                    alert('❌ Error al eliminar el producto');
                 }
             }
         };
@@ -478,13 +660,14 @@ const firebaseConfig = {
         // Cargar contactos
         async function cargarContactos() {
             try {
-                const q = query(collection(db, "contactos"), orderBy("fecha", "desc"));
+                const q = query(collection(db, "contactos"));
                 const querySnapshot = await getDocs(q);
                 const contactos = [];
                 querySnapshot.forEach((doc) => {
                     contactos.push({ id: doc.id, ...doc.data() });
                 });
                 mostrarContactos(contactos);
+                document.getElementById('totalMensajes').innerText = contactos.length;
             } catch (error) {
                 console.error("Error cargando contactos:", error);
             }
@@ -500,10 +683,9 @@ const firebaseConfig = {
             let html = '<table><thead><tr><th>Fecha</th><th>Nombre</th><th>Email</th><th>Producto</th><th>Mensaje</th></tr></thead><tbody>';
             
             contactos.forEach(contacto => {
-                const fecha = contacto.fecha?.toDate() || new Date();
                 html += `
                     <tr>
-                        <td>${fecha.toLocaleDateString()}</td>
+                        <td>${contacto.fecha?.toDate?.()?.toLocaleDateString() || new Date().toLocaleDateString()}</td>
                         <td><strong>${contacto.nombre}</strong></td>
                         <td>${contacto.email}</td>
                         <td>${contacto.producto || 'No especificado'}</td>
@@ -554,17 +736,19 @@ const firebaseConfig = {
         window.abrirModalProducto = function() {
             document.getElementById('productoForm').reset();
             document.getElementById('productoId').value = '';
+            document.getElementById('imagenActual').value = '';
+            document.getElementById('previewImg').style.display = 'none';
             document.getElementById('modalTitle').innerText = 'Agregar Producto';
             document.getElementById('productoModal').style.display = 'flex';
         };
         
         window.cerrarModalProducto = function() {
             document.getElementById('productoModal').style.display = 'none';
+            document.getElementById('uploadProgress').style.display = 'none';
         };
         
         window.logout = async function() {
             await signOut(auth);
-            localStorage.removeItem('adminLoggedIn');
             window.location.href = 'admin-login.html';
         };
         
