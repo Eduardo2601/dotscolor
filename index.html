@@ -17,15 +17,20 @@
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
         
         // Configuración de Firebase (¡REEMPLAZA CON TUS DATOS REALES!)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDEFAULT_KEY_REEMPLAZA_CON_TU_API_KEY",
-            authDomain: "dotscolor.firebaseapp.com",
-            projectId: "dotscolor",
-            storageBucket: "dotscolor.appspot.com",
-            messagingSenderId: "123456789012",
-            appId: "1:123456789012:web:abcdef123456"
-        };
-        
+ 
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBUNwOp9IDlusl_A1868GXsCMiFoj6Ao1Q",
+  authDomain: "gpsito.firebaseapp.com",
+  projectId: "gpsito",
+  storageBucket: "gpsito.firebasestorage.app",
+  messagingSenderId: "84920052709",
+  appId: "1:84920052709:web:ba764f7c0ca62982115d0c",
+  measurementId: "G-C3MNTN0F0H"
+};
+
+
         // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
