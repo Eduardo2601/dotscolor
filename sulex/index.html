@@ -1,1 +1,1081 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sulex – Servicios de Limpieza Profesional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue-deep:  #0A1F44;
+      --blue-mid:   #1A4A8A;
+      --blue-light: #2E7DD1;
+      --blue-pale:  #E8F2FC;
+      --accent:     #00C2FF;
+      --white:      #FFFFFF;
+      --gray-light: #F5F8FC;
+      --gray-mid:   #8FA3BC;
+      --text:       #0D1B2E;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5%;
+      background: rgba(10, 31, 68, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.7rem;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--blue-deep) !important;
+      font-weight: 700 !important;
+      padding: .5rem 1.2rem;
+      border-radius: 6px;
+      transition: opacity .2s !important;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      background: var(--blue-deep);
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 5% 4rem;
+    }
+
+    /* Geometric decoration */
+    #inicio::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,125,209,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #inicio::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,194,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative; z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(0,194,255,0.12);
+      border: 1px solid rgba(0,194,255,0.3);
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before { content: '✦'; font-size: .7rem; }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.2rem;
+      max-width: 480px;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--blue-deep);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      padding: .9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); opacity: .9; }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: .95rem;
+      padding: .9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: border-color .2s, background .2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(0,194,255,0.07);
+    }
+
+    /* Stats strip */
+    .hero-stats {
+      display: flex; gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-item {}
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-num span { color: var(--accent); }
+
+    .stat-label {
+      font-size: .8rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: .2rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero visual card */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.4rem 1.8rem;
+      backdrop-filter: blur(8px);
+      width: 100%;
+    }
+
+    .hero-card-header {
+      display: flex; align-items: center; gap: .8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hc-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(0,194,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .hc-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      font-size: .95rem;
+    }
+
+    .hc-sub { font-size: .78rem; color: rgba(255,255,255,0.45); }
+
+    .progress-row { display: flex; flex-direction: column; gap: .6rem; }
+
+    .pr-item { display: flex; flex-direction: column; gap: .3rem; }
+
+    .pr-label { font-size: .75rem; color: rgba(255,255,255,0.55); display: flex; justify-content: space-between; }
+
+    .pr-bar { height: 5px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+
+    .pr-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--blue-light), var(--accent)); }
+
+    .review-row {
+      display: flex; align-items: center; gap: 1rem;
+    }
+
+    .review-stars { color: #FFD166; font-size: 1rem; letter-spacing: 2px; }
+
+    .review-text { font-size: .82rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
+
+    .review-text strong { color: var(--white); display: block; margin-bottom: .1rem; }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 6rem 5%; }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: .8rem;
+    }
+
+    .section-label::before { content: ''; width: 24px; height: 2px; background: var(--blue-light); display: inline-block; }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--blue-deep);
+    }
+
+    .section-title em { font-style: normal; color: var(--blue-light); }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--gray-mid);
+      line-height: 1.7;
+      max-width: 540px;
+      margin-top: .8rem;
+    }
+
+    /* ── SERVICES ── */
+    #servicios {
+      background: var(--gray-light);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-header .section-desc { margin: .8rem auto 0; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(10,31,68,0.07);
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-mid), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(10,31,68,0.1); }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .svc-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      background: var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .svc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue-deep);
+      margin-bottom: .6rem;
+    }
+
+    .svc-desc {
+      font-size: .9rem;
+      color: var(--gray-mid);
+      line-height: 1.65;
+    }
+
+    .svc-features {
+      list-style: none;
+      margin-top: 1.2rem;
+      display: flex; flex-direction: column; gap: .4rem;
+    }
+
+    .svc-features li {
+      font-size: .82rem;
+      color: var(--blue-mid);
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    .svc-features li::before { content: '✓'; font-weight: 700; color: var(--accent); }
+
+    /* ── GALLERY ── */
+    #galeria { background: var(--white); }
+
+    .gallery-header { margin-bottom: 2.5rem; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      background: var(--blue-pale);
+      cursor: pointer;
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-item:nth-child(4) {
+      grid-column: 2 / 4;
+    }
+
+    .gallery-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, var(--blue-pale) 0%, rgba(46,125,209,0.2) 100%);
+      transition: transform .4s;
+    }
+
+    .gallery-item:hover .gallery-inner { transform: scale(1.05); }
+
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,31,68,0.7) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex; align-items: flex-end;
+      padding: 1.2rem;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-label {
+      font-family: 'Syne', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* ── WHY US ── */
+    #nosotros {
+      background: var(--blue-deep);
+      color: var(--white);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .why-left .section-title { color: var(--white); }
+    .why-left .section-desc { color: rgba(255,255,255,0.55); }
+
+    .why-list {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+
+    .why-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+    }
+
+    .why-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      min-width: 30px;
+    }
+
+    .why-text-block {}
+
+    .why-item-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--white);
+      margin-bottom: .2rem;
+    }
+
+    .why-item-desc { font-size: .83rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+    .why-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      transition: background .2s;
+    }
+
+    .metric-card:hover { background: rgba(0,194,255,0.07); }
+
+    .metric-icon { font-size: 2rem; margin-bottom: .6rem; }
+
+    .metric-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .metric-num span { color: var(--accent); }
+
+    .metric-label { font-size: .78rem; color: rgba(255,255,255,0.45); margin-top: .3rem; }
+
+    /* ── CONTACT ── */
+    #contacto {
+      background: var(--gray-light);
+    }
+
+    .contact-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info { }
+
+    .contact-channels {
+      display: flex; flex-direction: column; gap: .9rem;
+      margin-top: 2rem;
+    }
+
+    .channel-item {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--white);
+      border: 1px solid rgba(10,31,68,0.07);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .channel-item:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(10,31,68,0.08); }
+
+    .channel-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .ch-wa { background: #e8f9ef; }
+    .ch-ig { background: #fce8f3; }
+    .ch-ph { background: var(--blue-pale); }
+
+    .channel-text {}
+
+    .ch-title { font-weight: 600; font-size: .9rem; color: var(--blue-deep); }
+    .ch-sub { font-size: .8rem; color: var(--gray-mid); }
+
+    .contact-form {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid rgba(10,31,68,0.07);
+      box-shadow: 0 8px 40px rgba(10,31,68,0.06);
+    }
+
+    .form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--blue-deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group { margin-bottom: 1.1rem; }
+
+    .form-group label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--blue-deep);
+      margin-bottom: .4rem;
+      letter-spacing: .3px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid rgba(10,31,68,0.1);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      color: var(--text);
+      background: var(--gray-light);
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue-light);
+      background: var(--white);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--blue-deep);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      padding: .95rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      margin-top: .5rem;
+      transition: background .2s;
+    }
+
+    .btn-submit:hover { background: var(--blue-mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--blue-deep);
+      padding: 3rem 5% 2rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--white);
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    .footer-links a {
+      font-size: .83rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-copy { font-size: .78rem; margin-top: 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; }
+
+    /* ── WA FLOATING ── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem;
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      animation: pulse 2.5s infinite;
+    }
+
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,.5); }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.4); }
+      50% { box-shadow: 0 6px 32px rgba(37,211,102,.65); }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:first-child { grid-row: auto; }
+      .gallery-item:nth-child(4) { grid-column: auto; }
+    }
+
+    @media (max-width: 600px) {
+      nav .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Sul<span>ex</span></div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto" class="nav-cta">Cotizar</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">Servicios Profesionales de Limpieza</div>
+        <h1 class="hero-title">
+          Tu espacio,<br>
+          <em>impecable</em><br>
+          siempre.
+        </h1>
+        <p class="hero-desc">
+          En Sulex transformamos hogares, oficinas e industrias con soluciones de limpieza confiables, detalladas y hechas a tu medida.
+        </p>
+        <div class="hero-btns">
+          <a href="#contacto" class="btn-primary">📋 Solicitar cotización</a>
+          <a href="#servicios" class="btn-outline">Ver servicios →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">500<span>+</span></div>
+            <div class="stat-label">Clientes satisfechos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4<span>+</span></div>
+            <div class="stat-label">Años de experiencia</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">100<span>%</span></div>
+            <div class="stat-label">Garantía de calidad</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- Card 1: servicio activo -->
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="hc-icon">🏠</div>
+            <div>
+              <div class="hc-title">Limpieza en curso</div>
+              <div class="hc-sub">Residencial · Monterrey</div>
+            </div>
+          </div>
+          <div class="progress-row">
+            <div class="pr-item">
+              <div class="pr-label"><span>Cocina</span><span>100%</span></div>
+              <div class="pr-bar"><div class="pr-fill" style="width:100%"></div></div>
+            </div>
+            <div class="pr-item">
+              <div class="pr-label"><span>Baños</span><span>85%</span></div>
+              <div class="pr-bar"><div class="pr-fill" style="width:85%"></div></div>
+            </div>
+            <div class="pr-item">
+              <div class="pr-label"><span>Habitaciones</span><span>60%</span></div>
+              <div class="pr-bar"><div class="pr-fill" style="width:60%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: reseña -->
+        <div class="hero-card">
+          <div class="review-row">
+            <div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <div class="review-text">
+              <strong>María G.</strong>
+              "Servicio excelente, puntuales y muy detallados. Mi casa quedó perfecta."
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <div class="services-header fade-up">
+      <div class="section-label">Lo que hacemos</div>
+      <h2 class="section-title">Soluciones de limpieza<br><em>para cada necesidad</em></h2>
+      <p class="section-desc">Contamos con equipos especializados y productos de alta calidad para cada tipo de espacio.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="svc-icon">🏠</div>
+        <h3 class="svc-title">Limpieza de Hogares</h3>
+        <p class="svc-desc">Limpieza profunda o de mantenimiento para tu casa. Te dejamos un hogar fresco y ordenado.</p>
+        <ul class="svc-features">
+          <li>Cocina y baños a detalle</li>
+          <li>Pisos, ventanas y superficies</li>
+          <li>Recámaras y sala</li>
+          <li>Servicio regular o puntual</li>
+        </ul>
+      </div>
+      <div class="service-card fade-up">
+        <div class="svc-icon">🏢</div>
+        <h3 class="svc-title">Oficinas y Empresas</h3>
+        <p class="svc-desc">Mantenemos tus instalaciones limpias para que tu equipo trabaje en un ambiente óptimo.</p>
+        <ul class="svc-features">
+          <li>Áreas comunes y recepción</li>
+          <li>Sanitarios corporativos</li>
+          <li>Salas de juntas y cubículos</li>
+          <li>Servicio diario o semanal</li>
+        </ul>
+      </div>
+      <div class="service-card fade-up">
+        <div class="svc-icon">🏭</div>
+        <h3 class="svc-title">Limpieza Industrial</h3>
+        <p class="svc-desc">Soluciones especializadas para plantas, bodegas y espacios de alto tráfico y demanda.</p>
+        <ul class="svc-features">
+          <li>Maquinaria y líneas de producción</li>
+          <li>Pisos industriales</li>
+          <li>Almacenes y bodegas</li>
+          <li>Residuos industriales</li>
+        </ul>
+      </div>
+      <div class="service-card fade-up">
+        <div class="svc-icon">🔨</div>
+        <h3 class="svc-title">Post-Construcción</h3>
+        <p class="svc-desc">Eliminamos polvo, escombros y residuos de obra para que tu espacio quede listo para habitar.</p>
+        <ul class="svc-features">
+          <li>Remoción de polvo y yeso</li>
+          <li>Limpieza de vidrios y marcos</li>
+          <li>Pulido de pisos</li>
+          <li>Entrega en tiempo récord</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="galeria">
+    <div class="gallery-header fade-up">
+      <div class="section-label">Nuestro trabajo</div>
+      <h2 class="section-title">Resultados que<br><em>hablan por sí solos</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-inner">🏠</div>
+        <div class="gallery-overlay"><div class="gallery-label">Limpieza Residencial</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-inner">🪟</div>
+        <div class="gallery-overlay"><div class="gallery-label">Limpieza de Ventanas</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-inner">🏢</div>
+        <div class="gallery-overlay"><div class="gallery-label">Oficina Corporativa</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-inner" style="font-size:2.5rem; gap:.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">🏭<span style="font-size:.9rem; color: var(--blue-mid); font-family: 'DM Sans', sans-serif;">Planta Industrial</span></div>
+        <div class="gallery-overlay"><div class="gallery-label">Limpieza Industrial</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-inner">🔨</div>
+        <div class="gallery-overlay"><div class="gallery-label">Post-Construcción</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="nosotros">
+    <div class="why-grid">
+      <div class="why-left fade-up">
+        <div class="section-label" style="color: var(--accent);">¿Por qué elegirnos?</div>
+        <h2 class="section-title">Limpieza con<br>propósito y calidad</h2>
+        <p class="section-desc">En Sulex no solo limpiamos, creamos espacios donde las personas se sienten bien.</p>
+        <ul class="why-list">
+          <li class="why-item">
+            <div class="why-num">01</div>
+            <div class="why-text-block">
+              <div class="why-item-title">Personal capacitado y confiable</div>
+              <div class="why-item-desc">Equipo selecto, con entrenamiento continuo y compromiso con la calidad.</div>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">02</div>
+            <div class="why-text-block">
+              <div class="why-item-title">Productos de alta calidad</div>
+              <div class="why-item-desc">Utilizamos productos seguros, eficaces y respetuosos con el medio ambiente.</div>
+            </div>
+          </li>
+          <li class="why-item">
+            <div class="why-num">03</div>
+            <div class="why-text-block">
+              <div class="why-item-title">Puntualidad garantizada</div>
+              <div class="why-item-desc">Llegamos en el horario acordado, siempre. Tu tiempo es valioso.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-right fade-up">
+        <div class="metric-card">
+          <div class="metric-icon">⭐</div>
+          <div class="metric-num">4.9<span>/5</span></div>
+          <div class="metric-label">Calificación promedio</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">👥</div>
+          <div class="metric-num">500<span>+</span></div>
+          <div class="metric-label">Clientes atendidos</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">📅</div>
+          <div class="metric-num">4<span> años</span></div>
+          <div class="metric-label">De experiencia</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">✅</div>
+          <div class="metric-num">100<span>%</span></div>
+          <div class="metric-label">Satisfacción garantizada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <div class="contact-wrapper">
+      <div class="contact-info fade-up">
+        <div class="section-label">Contáctanos</div>
+        <h2 class="section-title">¿Listo para un<br><em>espacio impecable?</em></h2>
+        <p class="section-desc">Escríbenos o llena el formulario y te enviamos una cotización sin costo en menos de 24 horas.</p>
+        <div class="contact-channels">
+          <a href="https://wa.me/528001234567" target="_blank" class="channel-item">
+            <div class="channel-icon ch-wa">💬</div>
+            <div class="channel-text">
+              <div class="ch-title">WhatsApp</div>
+              <div class="ch-sub">Respuesta inmediata · Escríbenos ahora</div>
+            </div>
+          </a>
+          <a href="https://instagram.com/sulex_limpieza" target="_blank" class="channel-item">
+            <div class="channel-icon ch-ig">📸</div>
+            <div class="channel-text">
+              <div class="ch-title">Instagram</div>
+              <div class="ch-sub">@sulex_limpieza · Síguenos</div>
+            </div>
+          </a>
+          <a href="tel:+528001234567" class="channel-item">
+            <div class="channel-icon ch-ph">📞</div>
+            <div class="channel-text">
+              <div class="ch-title">Teléfono</div>
+              <div class="ch-sub">800 123 4567 · Lun–Sáb 8am–6pm</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <div class="form-title">Solicita tu cotización gratis</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre"/>
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="Ej. 844 000 0000"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tipo de servicio</label>
+          <select>
+            <option value="">Selecciona un servicio…</option>
+            <option>Limpieza de hogares</option>
+            <option>Limpieza de oficinas/empresas</option>
+            <option>Limpieza industrial</option>
+            <option>Limpieza post-construcción</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje (opcional)</label>
+          <textarea placeholder="Cuéntanos sobre tu espacio y necesidades…"></textarea>
+        </div>
+        <button class="btn-submit" onclick="sendWA()">
+          💬 Enviar por WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Sul<span>ex</span></div>
+      <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 Sulex Servicios de Limpieza · Todos los derechos reservados</div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/528001234567" target="_blank" class="wa-float" title="Escríbenos por WhatsApp">💬</a>
+
+  <script>
+    // Fade-up on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    // WhatsApp form send
+    function sendWA() {
+      const name = document.querySelector('input[placeholder="Tu nombre"]').value || 'Cliente';
+      const phone = document.querySelector('input[placeholder="Ej. 844 000 0000"]').value || '';
+      const service = document.querySelector('select').value || 'Sin especificar';
+      const msg = document.querySelector('textarea').value || '';
+      const text = encodeURIComponent(
+        `¡Hola Sulex! 👋\n\nQuiero solicitar una cotización:\n\n• Nombre: ${name}\n• Teléfono: ${phone}\n• Servicio: ${service}\n• Detalles: ${msg || 'Sin detalles adicionales'}`
+      );
+      window.open(`https://wa.me/528001234567?text=${text}`, '_blank');
+    }
+  </script>
+</body>
+</html>
