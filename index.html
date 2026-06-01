@@ -59,6 +59,15 @@
     .section-title {
       text-align: center;
       margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+
+    .section-title.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section-title h2 {
@@ -274,6 +283,91 @@
       box-shadow: var(--shadow-md);
       transition: var(--transition);
       height: 100%;
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28, 30, 42, 0.18), rgba(28, 30, 42, 0.72));
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 0;
+    }
+
+    .card.service-card {
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 28px;
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .card.service-card::before {
+      opacity: 1;
+    }
+
+    .card.service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card.service-card .material-icons {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .card.service-card h3,
+    .card.service-card p {
+      color: var(--white);
+    }
+
+    .service-web {
+      background-image: url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200');
+    }
+
+    .service-shop {
+      background-image: url('https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200');
+    }
+
+    .service-system {
+      background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200');
+    }
+
+    .service-mail {
+      background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200');
+    }
+
+    .service-support {
+      background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200');
+    }
+
+    .service-promos {
+      background-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200');
+    }
+
+    .service-video {
+      background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200');
+    }
+
+    .service-business {
+      background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200');
+    }
+
+    .card[id] {
+      scroll-margin-top: 110px;
     }
 
     .card:hover {
@@ -302,11 +396,11 @@
 
     .step {
       background: var(--white);
-      padding: 30px 25px;
       border-radius: 16px;
-      text-align: center;
       box-shadow: var(--shadow-sm);
-      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 92px 1fr;
       transition: var(--transition);
     }
 
@@ -315,10 +409,26 @@
       box-shadow: var(--shadow-md);
     }
 
-    .step h3 {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 10px;
+    .step-number {
+      background: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      font-size: 2.4rem;
+      font-weight: 700;
+    }
+
+    .step-content {
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      padding: 24px 22px;
+      font-weight: 600;
+      color: var(--dark);
     }
 
     /* ===== PORTAFOLIO ===== */
@@ -473,13 +583,23 @@
       padding: 18px 20px;
       border-radius: 12px;
       box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      animation: fadeInUp 0.7s ease both;
+      will-change: transform, box-shadow;
     }
 
     .benefit:hover {
-      transform: translateX(5px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, rgba(0, 127, 255, 0.06), rgba(255, 255, 255, 1));
     }
+
+    .benefits-grid .benefit:nth-child(1) { animation-delay: 0.05s; }
+    .benefits-grid .benefit:nth-child(2) { animation-delay: 0.15s; }
+    .benefits-grid .benefit:nth-child(3) { animation-delay: 0.25s; }
+    .benefits-grid .benefit:nth-child(4) { animation-delay: 0.35s; }
+    .benefits-grid .benefit:nth-child(5) { animation-delay: 0.45s; }
+    .benefits-grid .benefit:nth-child(6) { animation-delay: 0.55s; }
 
     .benefit .material-icons {
       color: var(--secondary);
@@ -638,6 +758,15 @@
       }
     }
 
+    @keyframes titleGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.18);
+      }
+      100% {
+        box-shadow: 0 0 0 16px rgba(243, 243, 243, 0);
+      }
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .menu-toggle {
@@ -676,6 +805,18 @@
       .section-title h2 {
         font-size: 1.8rem;
       }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .step-number {
+        min-height: 88px;
+      }
+
+      .step-content {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -698,7 +839,7 @@
         <li><a href="#portafolio" class="nav-link"><span class="material-icons" aria-hidden="true">work</span>Portafolio</a></li>
         <li><a href="#planes" class="nav-link"><span class="material-icons" aria-hidden="true">payments</span>Planes</a></li>
         <li><a href="#contacto" class="nav-link"><span class="material-icons" aria-hidden="true">mail</span>Contacto</a></li>
-        <li><a href="soporte-tecnico.html" class="nav-link"><span class="material-icons" aria-hidden="true">support_agent</span>Soporte</a></li>
+        <li><a href="soporte-tecnico.html" class="nav-link"><span class="material-icons" aria-hidden="true">support_agent</span>Soporte Técnico</a></li>
         <li><a href="index.html" class="nav-link"><span class="material-icons" aria-hidden="true">design_services</span>Personalizado</a></li>
       </ul>
 
@@ -734,32 +875,50 @@
         <p>Soluciones digitales adaptadas a cada negocio</p>
       </div>
       <div class="grid">
-        <article class="card">
+        <a class="card service-card service-web" href="sitios-web-empresariales.html" aria-label="Ir a Sitios Web Empresariales">
           <span class="material-icons" aria-hidden="true">language</span>
           <h3>Sitios Web Empresariales</h3>
           <p>Páginas web modernas optimizadas para posicionarse en Google y atraer clientes.</p>
-        </article>
-        <article class="card">
+        </a>
+        <a class="card service-card service-shop" href="tiendas-online.html" aria-label="Ir a Tiendas Online">
           <span class="material-icons" aria-hidden="true">storefront</span>
           <h3>Tiendas Online</h3>
           <p>Vende tus productos en internet las 24 horas con carrito de compras y pasarelas de pago.</p>
-        </article>
-        <article class="card">
+        </a>
+        <a class="card service-card service-system" href="sistemas-web.html" aria-label="Ir a Sistemas Web">
           <span class="material-icons" aria-hidden="true">dashboard</span>
           <h3>Sistemas Web</h3>
           <p>Aplicaciones personalizadas para optimizar los procesos de tu empresa.</p>
-        </article>
-                <article class="card">
+        </a>
+        <a class="card service-card service-mail" href="correo-electronico.html" aria-label="Ir a Correo Electronico">
       <span class="material-icons">alternate_email</span>
           <h3>Correo Electronico</h3>
           <p>Gestion de dominios y cuentas de correo profesionales.</p>
-        </article>
+        </a>
 
-                        <article class="card">
+        <a class="card service-card service-support" href="asesoria-tecnica.html" aria-label="Ir a Asesoria Tecnica">
      <span class="material-icons">support_agent</span>
           <h3>Asesoria Tecnica</h3>
           <p>Asesoria en toma de desiciones de Implementacion de soluciones tecnologicas</p>
-        </article>
+        </a>
+
+        <a class="card service-card service-promos" href="articulos-promocionales.html" aria-label="Ir a Articulos Promocionales">
+      <span class="material-icons">card_giftcard</span>
+          <h3>Articulos Promocionales</h3>
+          <p>Termos, llaveros, tazas, libretas y otros articulos personalizados para promocionar tu marca.</p>
+        </a>
+
+        <a class="card service-card service-video" href="video-corporativo.html" aria-label="Ir a Video Corporativo">
+      <span class="material-icons">movie</span>
+          <h3>Video Corporativo</h3>
+          <p>Videos promocionales para presentar tu empresa, servicios, productos o campañas con mejor impacto visual.</p>
+        </a>
+
+        <a class="card service-card service-business" href="asesoria-empresarial.html" aria-label="Ir a Asesoria Empresarial">
+      <span class="material-icons">groups</span>
+          <h3>Asesoria Empresarial</h3>
+          <p>Te ayudamos a definir mejoras, procesos y soluciones para que tu negocio trabaje con mas orden.</p>
+        </a>
       </div>
     </section>
 
@@ -771,20 +930,20 @@
       </div>
       <div class="steps">
         <div class="step">
-          <h3>1</h3>
-          <p>Analizamos tu negocio</p>
+          <div class="step-number">1</div>
+          <div class="step-content">Analizamos tu negocio</div>
         </div>
         <div class="step">
-          <h3>2</h3>
-          <p>Diseñamos tu sitio</p>
+          <div class="step-number">2</div>
+          <div class="step-content">Diseñamos tu sitio</div>
         </div>
         <div class="step">
-          <h3>3</h3>
-          <p>Desarrollamos</p>
+          <div class="step-number">3</div>
+          <div class="step-content">Desarrollamos</div>
         </div>
         <div class="step">
-          <h3>4</h3>
-          <p>Publicamos y probamos</p>
+          <div class="step-number">4</div>
+          <div class="step-content">Publicamos y probamos</div>
         </div>
       </div>
     </section>
@@ -831,7 +990,7 @@
       </div>
       <div class="portfolio-grid">
         <a class="project" href="sulex.html">
-          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800" 
+          <img src="sulex.png" 
                alt="Sitio web corporativo moderno"
                loading="lazy">
           <div class="project-info">
@@ -868,46 +1027,17 @@
             <p>Empresa de servicios</p>
           </div>
         </a>
-        <a class="project" href="https://qlsdemexico.com" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800" 
-               alt="Inmobiliaria"
+        <a class="project" href="https://gpsito.web.app/dashboard" target="_blank" rel="noopener noreferrer">
+          <img src="linkweb.png" 
+               alt="Taxi dashboard"
                loading="lazy">
           <div class="project-info">
-            <h4>Inmobiliaria</h4>
-            <p>Empresa de venta de propiedades</p>
+            <h4>Taxi dashboard</h4>
+            <p>Plataforma de gestión de servicios de taxi</p>
           </div>
         </a>
-        <a class="project" href="https://vidatracking.com" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800" 
-               alt="Dashboard administrativo"
-               loading="lazy">
-          <div class="project-info">
-            <h4>ERP gestión de proyectos </h4>
-            <p>Plataforma para empresa de servicios</p>
-          </div>
-        </a>
-      </div>
-        <div class="portfolio-grid">
-        <a class="project" href="sulex.html">
-          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800" 
-               alt="Sitio web corporativo moderno"
-               loading="lazy">
-          <div class="project-info">
-            <h4>Sulex</h4>
-            <p>Empresa de Limpieza</p>
-          </div>
-        </a>
-        <a class="project" href="https://qlsdemexico.com" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800" 
-               alt="Inmobiliaria"
-               loading="lazy">
-          <div class="project-info">
-            <h4>Inmobiliaria</h4>
-            <p>Empresa de venta de propiedades</p>
-          </div>
-        </a>
-        <a class="project" href="https://vidatracking.com" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800" 
+      <a class="project" href="made/index.html" target="_blank" rel="noopener noreferrer">
+          <img src="madeby.png" 
                alt="Dashboard administrativo"
                loading="lazy">
           <div class="project-info">
@@ -915,6 +1045,35 @@
             <p>Sitio web</p>
           </div>
         </a>
+      </div>
+        <div class="portfolio-grid">
+         <a class="project" href="made/index.html" target="_blank" rel="noopener noreferrer">
+          <img src="taxi.jpg" 
+               alt="Dashboard administrativo"
+               loading="lazy">
+          <div class="project-info">
+            <h4>TaxiLink</h4>
+            <p>Aplicacion android</p>
+          </div>
+        </a>    <a class="project" href="made/index.html" target="_blank" rel="noopener noreferrer">
+          <img src="madeby.png" 
+               alt="Dashboard administrativo"
+               loading="lazy">
+          <div class="project-info">
+            <h4>Empresa de administración de eventos </h4>
+           <p>Aplicacion android</p>
+          </div>
+        </a>    <a class="project" href="made/index.html" target="_blank" rel="noopener noreferrer">
+          <img src="gpsito.png" 
+               alt="Gpsito app"
+               loading="lazy">
+          <div class="project-info">
+            <h4>Aplicacion de monitoreo de dispositivos gps </h4>
+            <p>Aplicacion + Plataforma web</p>
+          </div>
+        </a>
+       
+    
       </div>
     </section>
 
@@ -1172,6 +1331,22 @@
       const menuToggle = document.querySelector('.menu-toggle');
       const navMenu = document.querySelector('.nav-menu');
       const menuIcon = menuToggle.querySelector('.material-icons');
+
+      const sectionTitles = document.querySelectorAll('.section-title');
+      const titleObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            entry.target.style.animation = 'titleGlow 0.9s ease';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.18,
+        rootMargin: '0px 0px -10% 0px'
+      });
+
+      sectionTitles.forEach(title => titleObserver.observe(title));
 
       menuToggle.addEventListener('click', function() {
         const isActive = navMenu.classList.toggle('active');
