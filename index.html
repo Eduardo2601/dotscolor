@@ -1049,6 +1049,123 @@
       </div>
     </section>
 
+
+	  <style>/* ===== CLIENTES ===== */
+.clientes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 30px 20px;
+  align-items: center;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.cliente-item {
+  width: 100%;
+  max-width: 180px;
+  aspect-ratio: 2 / 1;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px;
+  transition: var(--transition);
+  border: 1px solid rgba(0,0,0,0.04);
+  cursor: default;
+}
+
+.cliente-item img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  filter: grayscale(1) opacity(0.6);
+  transition: var(--transition);
+  display: block;
+  object-fit: contain;
+}
+
+.cliente-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(0, 127, 255, 0.15);
+}
+
+.cliente-item:hover img {
+  filter: grayscale(0) opacity(1);
+}
+
+/* Ajuste responsive */
+@media (max-width: 600px) {
+  .clientes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px 12px;
+  }
+  .cliente-item {
+    padding: 12px 8px;
+  }
+}</style>
+	  <!-- ===== CLIENTES ===== -->
+<section class="container" id="clientes">
+  <div class="section-title">
+    <h2>Marcas que confían en nosotros</h2>
+    <p>Empresas que han elegido Dots Color para potenciar su presencia digital</p>
+  </div>
+
+  <div class="clientes-grid">
+    <!-- Logo 1 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+1" 
+           alt="Cliente 1" 
+           loading="lazy">
+    </div>
+    <!-- Logo 2 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+2" 
+           alt="Cliente 2" 
+           loading="lazy">
+    </div>
+    <!-- Logo 3 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+3" 
+           alt="Cliente 3" 
+           loading="lazy">
+    </div>
+    <!-- Logo 4 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+4" 
+           alt="Cliente 4" 
+           loading="lazy">
+    </div>
+    <!-- Logo 5 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+5" 
+           alt="Cliente 5" 
+           loading="lazy">
+    </div>
+    <!-- Logo 6 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+6" 
+           alt="Cliente 6" 
+           loading="lazy">
+    </div>
+    <!-- Logo 7 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+7" 
+           alt="Cliente 7" 
+           loading="lazy">
+    </div>
+    <!-- Logo 8 -->
+    <div class="cliente-item">
+      <img src="https://via.placeholder.com/160x80/cccccc/969696?text=Logo+8" 
+           alt="Cliente 8" 
+           loading="lazy">
+    </div>
+  </div>
+</section>
+
     <!-- PORTAFOLIO -->
     <section class="container" id="portafolio">
       <div class="section-title">
