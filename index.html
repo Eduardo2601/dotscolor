@@ -857,6 +857,9 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="navbar-container">
+		   <button class="menu-toggle btn-info" aria-label="Menú" aria-expanded="false">
+        <span class="material-icons">menu</span>
+      </button>
       <a href="#" class="logo" aria-label="Dots Color">
         <img src="logodots.png" alt="Dots Color">
       </a>
@@ -886,11 +889,16 @@
 
 .menu-toggle .material-icons {
     font-size: 26px;
+}
+
+/* Ocultar en escritorio */
+@media (min-width: 992px) {
+    .menu-toggle {
+        display: none;
+    }
 }</style>
       
-      <button class="menu-toggle btn-info" aria-label="Menú" aria-expanded="false">
-        <span class="material-icons">menu</span>
-      </button>
+   
 
       <ul class="nav-menu" role="list">
         <li><a href="#" class="nav-link"><span class="material-icons" aria-hidden="true">home</span>Inicio</a></li>
